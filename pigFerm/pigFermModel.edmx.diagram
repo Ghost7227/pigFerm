@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="351aeecc3e5e45a69ba793e6ba9d34a2" Name="Diagram1">
+        <EntityTypeShape EntityType="pigFermModel.breed" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="pigFermModel.department" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="pigFermModel.EventType" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="pigFermModel.groupType" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="pigFermModel.post" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="pigFermModel.Room" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="pigFermModel.roomType" Width="1.5" PointX="0.75" PointY="1.375" />
+        <AssociationConnector Association="pigFermModel.FK__Rooms__typeRoom__6383C8BA" />
+        <AssociationConnector Association="pigFermModel.postDepartment" />
+        <EntityTypeShape EntityType="pigFermModel.employee" Width="1.5" PointX="0.75" PointY="8" />
+        <AssociationConnector Association="pigFermModel.employeePost" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
