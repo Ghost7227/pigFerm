@@ -23,5 +23,10 @@ namespace pigFerm.windows
         {
             InitializeComponent();
         }
+
+        private void lastNameTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -7,6 +7,58 @@
         mc:Ignorable="d"
         Title="createOrEditEmployeeWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Фамилия:"/>
+        <TextBox Name="lastNameTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1"/>
+
+        <TextBlock Grid.Row="1" Text="Имя:"/>
+        <TextBox Name="firstNameTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="1"/>
+
+        <TextBlock Grid.Row="2" Text="Отчество:"/>
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <TextBox Name="midleNameTB" TextChanged="lastNameTB_TextChanged"/>
+            <CheckBox Content="Отчество отсутствует"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="3" Text="Дата рождения:"/>
+        <DatePicker Grid.Column="1" Grid.Row="3" SelectedDateFormat="Long"/>
+
+        <TextBlock Grid.Row="4" Text="Пол:"/>
+        <StackPanel Grid.Column="1" Grid.Row="4">
+            <RadioButton Content="Мужчина"/>
+            <RadioButton Content="Женщина"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="5" Text="Серия и номер паспорта:"/>
+        <TextBox Name="pasportTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="5"/>
+
+        <TextBlock Grid.Row="6" Text="СНИЛС:"/>
+        <TextBox Name="snilsTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="6"/>
+
+        <TextBlock Grid.Row="7" Text="ИНН:"/>
+        <TextBox Name="innTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="7"/>
+
+        <TextBlock Grid.Row="8" Text="Электронная почта:"/>
+        <TextBox Name="emailTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="8"/>
+
+        <TextBlock Grid.Row="9" Text="Номер телефона:"/>
+        <TextBox Name="phoneTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="9"/>
     </Grid>
 </Window>

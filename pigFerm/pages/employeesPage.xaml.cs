@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pigFerm.windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,14 @@ namespace pigFerm.pages
 
         private void addNewEmployeeBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            createOrEditEmployeeWindow createOrEditEmployeeWindow = new createOrEditEmployeeWindow();
+            if(createOrEditEmployeeWindow.ShowDialog() == true)
+            {
+                if(createOrEditEmployeeWindow.DialogResult == true)
+                {
+                    MessageBox.Show("Сотрудник добавлен");
+                }
+            }
         }
     }
 }
