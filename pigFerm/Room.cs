@@ -14,6 +14,12 @@ namespace pigFerm
     
     public partial class Room
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Room()
+        {
+            this.animalGroups = new HashSet<animalGroup>();
+        }
+    
         public int id { get; set; }
         public string adres { get; set; }
         public Nullable<int> capacity { get; set; }
@@ -21,6 +27,8 @@ namespace pigFerm
         public string locationNotes { get; set; }
         public Nullable<int> typeRoom { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<animalGroup> animalGroups { get; set; }
         public virtual roomType roomType { get; set; }
     }
 }

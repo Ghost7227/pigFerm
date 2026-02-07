@@ -25,13 +25,18 @@ namespace pigFerm
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<animalGroup> animalGroups { get; set; }
+        public virtual DbSet<Animal> Animals { get; set; }
         public virtual DbSet<breed> breeds { get; set; }
         public virtual DbSet<department> departments { get; set; }
+        public virtual DbSet<employee> employees { get; set; }
         public virtual DbSet<EventType> EventTypes { get; set; }
         public virtual DbSet<groupType> groupTypes { get; set; }
         public virtual DbSet<post> posts { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<roomType> roomTypes { get; set; }
-        public virtual DbSet<employee> employees { get; set; }
+        public virtual DbSet<feed> feeds { get; set; }
+        public virtual DbSet<@event> events { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

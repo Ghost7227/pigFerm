@@ -5,6 +5,32 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище pigFermModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="animalGroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idType" Type="int" />
+          <Property Name="idRoom" Type="int" />
+          <Property Name="idEmployee" Type="int" />
+        </EntityType>
+        <EntityType Name="Animals">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ear_tag" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="gender" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="birth_date" Type="date" />
+          <Property Name="breed" Type="int" />
+          <Property Name="arrival_date" Type="date" />
+          <Property Name="origin" Type="nvarchar" MaxLength="255" />
+          <Property Name="mother_id" Type="int" />
+          <Property Name="father_id" Type="int" />
+          <Property Name="group_id" Type="int" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="breeds">
           <Key>
             <PropertyRef Name="id" />
@@ -43,12 +69,31 @@
           <Property Name="phone" Type="nvarchar" MaxLength="11" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="events">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateTime" Type="datetime" Nullable="false" />
+          <Property Name="nameEventId" Type="int" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="EventTypes">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nameEvent" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="feeds">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="reserv" Type="int" Nullable="false" />
+          <Property Name="unit" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="groupTypes">
           <Key>
@@ -91,6 +136,100 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nameRoomTtpes" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__animalGro__idEmp__3E1D39E1">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="animalGroup" Type="Self.animalGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="animalGroup">
+              <PropertyRef Name="idEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__animalGro__idRoo__3D2915A8">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
+          <End Role="animalGroup" Type="Self.animalGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="animalGroup">
+              <PropertyRef Name="idRoom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__animalGro__idTyp__3C34F16F">
+          <End Role="groupTypes" Type="Self.groupTypes" Multiplicity="0..1" />
+          <End Role="animalGroup" Type="Self.animalGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="groupTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="animalGroup">
+              <PropertyRef Name="idType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animals__breed__42E1EEFE">
+          <End Role="breeds" Type="Self.breeds" Multiplicity="0..1" />
+          <End Role="Animals" Type="Self.Animals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="breeds">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Animals">
+              <PropertyRef Name="breed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animals__father___44CA3770">
+          <End Role="Animals" Type="Self.Animals" Multiplicity="0..1" />
+          <End Role="Animals1" Type="Self.Animals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animals">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Animals1">
+              <PropertyRef Name="father_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animals__group_i__45BE5BA9">
+          <End Role="animalGroup" Type="Self.animalGroup" Multiplicity="0..1" />
+          <End Role="Animals" Type="Self.Animals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animalGroup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Animals">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animals__mother___43D61337">
+          <End Role="Animals" Type="Self.Animals" Multiplicity="0..1" />
+          <End Role="Animals1" Type="Self.Animals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animals">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Animals1">
+              <PropertyRef Name="mother_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__employeeP__idemp__02084FDA">
           <End Role="employees" Type="Self.employees" Multiplicity="1" />
           <End Role="employeePost" Type="Self.employeePost" Multiplicity="*" />
@@ -112,6 +251,18 @@
             </Principal>
             <Dependent Role="employeePost">
               <PropertyRef Name="idPost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__events__nameEven__0D44F85C">
+          <End Role="EventTypes" Type="Self.EventTypes" Multiplicity="0..1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="nameEventId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -152,16 +303,49 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище pigFermModelContainer">
+          <EntitySet Name="animalGroup" EntityType="Self.animalGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Animals" EntityType="Self.Animals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="breeds" EntityType="Self.breeds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employeePost" EntityType="Self.employeePost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="events" EntityType="Self.events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventTypes" EntityType="Self.EventTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feeds" EntityType="Self.feeds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="groupTypes" EntityType="Self.groupTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="postDepartment" EntityType="Self.postDepartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roomTypes" EntityType="Self.roomTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__animalGro__idEmp__3E1D39E1" Association="Self.FK__animalGro__idEmp__3E1D39E1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="animalGroup" EntitySet="animalGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__animalGro__idRoo__3D2915A8" Association="Self.FK__animalGro__idRoo__3D2915A8">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="animalGroup" EntitySet="animalGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__animalGro__idTyp__3C34F16F" Association="Self.FK__animalGro__idTyp__3C34F16F">
+            <End Role="groupTypes" EntitySet="groupTypes" />
+            <End Role="animalGroup" EntitySet="animalGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animals__breed__42E1EEFE" Association="Self.FK__Animals__breed__42E1EEFE">
+            <End Role="breeds" EntitySet="breeds" />
+            <End Role="Animals" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animals__father___44CA3770" Association="Self.FK__Animals__father___44CA3770">
+            <End Role="Animals" EntitySet="Animals" />
+            <End Role="Animals1" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animals__group_i__45BE5BA9" Association="Self.FK__Animals__group_i__45BE5BA9">
+            <End Role="animalGroup" EntitySet="animalGroup" />
+            <End Role="Animals" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animals__mother___43D61337" Association="Self.FK__Animals__mother___43D61337">
+            <End Role="Animals" EntitySet="Animals" />
+            <End Role="Animals1" EntitySet="Animals" />
+          </AssociationSet>
           <AssociationSet Name="FK__employeeP__idemp__02084FDA" Association="Self.FK__employeeP__idemp__02084FDA">
             <End Role="employees" EntitySet="employees" />
             <End Role="employeePost" EntitySet="employeePost" />
@@ -169,6 +353,10 @@
           <AssociationSet Name="FK__employeeP__idPos__02FC7413" Association="Self.FK__employeeP__idPos__02FC7413">
             <End Role="posts" EntitySet="posts" />
             <End Role="employeePost" EntitySet="employeePost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__events__nameEven__0D44F85C" Association="Self.FK__events__nameEven__0D44F85C">
+            <End Role="EventTypes" EntitySet="EventTypes" />
+            <End Role="events" EntitySet="events" />
           </AssociationSet>
           <AssociationSet Name="FK__postDepar__idDep__74AE54BC" Association="Self.FK__postDepar__idDep__74AE54BC">
             <End Role="department" EntitySet="department" />
@@ -188,33 +376,107 @@
     <edmx:ConceptualModels>
       <Schema Namespace="pigFermModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="pigFermEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="animalGroups" EntityType="pigFermModel.animalGroup" />
+          <EntitySet Name="Animals" EntityType="pigFermModel.Animal" />
           <EntitySet Name="breeds" EntityType="pigFermModel.breed" />
           <EntitySet Name="departments" EntityType="pigFermModel.department" />
+          <EntitySet Name="employees" EntityType="pigFermModel.employee" />
           <EntitySet Name="EventTypes" EntityType="pigFermModel.EventType" />
           <EntitySet Name="groupTypes" EntityType="pigFermModel.groupType" />
           <EntitySet Name="posts" EntityType="pigFermModel.post" />
           <EntitySet Name="Rooms" EntityType="pigFermModel.Room" />
           <EntitySet Name="roomTypes" EntityType="pigFermModel.roomType" />
+          <AssociationSet Name="FK__animalGro__idEmp__3E1D39E1" Association="pigFermModel.FK__animalGro__idEmp__3E1D39E1">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="animalGroup" EntitySet="animalGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__animalGro__idRoo__3D2915A8" Association="pigFermModel.FK__animalGro__idRoo__3D2915A8">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="animalGroup" EntitySet="animalGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__animalGro__idTyp__3C34F16F" Association="pigFermModel.FK__animalGro__idTyp__3C34F16F">
+            <End Role="groupType" EntitySet="groupTypes" />
+            <End Role="animalGroup" EntitySet="animalGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animals__group_i__45BE5BA9" Association="pigFermModel.FK__Animals__group_i__45BE5BA9">
+            <End Role="animalGroup" EntitySet="animalGroups" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animals__breed__42E1EEFE" Association="pigFermModel.FK__Animals__breed__42E1EEFE">
+            <End Role="breed" EntitySet="breeds" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animals__father___44CA3770" Association="pigFermModel.FK__Animals__father___44CA3770">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="Animal1" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animals__mother___43D61337" Association="pigFermModel.FK__Animals__mother___43D61337">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="Animal1" EntitySet="Animals" />
+          </AssociationSet>
           <AssociationSet Name="FK__Rooms__typeRoom__6383C8BA" Association="pigFermModel.FK__Rooms__typeRoom__6383C8BA">
             <End Role="roomType" EntitySet="roomTypes" />
             <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="employeePost" Association="pigFermModel.employeePost">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="post" EntitySet="posts" />
           </AssociationSet>
           <AssociationSet Name="postDepartment" Association="pigFermModel.postDepartment">
             <End Role="department" EntitySet="departments" />
             <End Role="post" EntitySet="posts" />
           </AssociationSet>
-          <EntitySet Name="employees" EntityType="pigFermModel.employee" />
-          <AssociationSet Name="employeePost" Association="pigFermModel.employeePost">
-            <End Role="employee" EntitySet="employees" />
-            <End Role="post" EntitySet="posts" />
+          <EntitySet Name="feeds" EntityType="pigFermModel.feed" />
+          <EntitySet Name="events" EntityType="pigFermModel.event" />
+          <EntitySet Name="sysdiagrams" EntityType="pigFermModel.sysdiagram" />
+          <AssociationSet Name="FK__events__nameEven__0D44F85C" Association="pigFermModel.FK__events__nameEven__0D44F85C">
+            <End Role="EventType" EntitySet="EventTypes" />
+            <End Role="event" EntitySet="events" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="animalGroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idType" Type="Int32" />
+          <Property Name="idRoom" Type="Int32" />
+          <Property Name="idEmployee" Type="Int32" />
+          <NavigationProperty Name="employee" Relationship="pigFermModel.FK__animalGro__idEmp__3E1D39E1" FromRole="animalGroup" ToRole="employee" />
+          <NavigationProperty Name="Room" Relationship="pigFermModel.FK__animalGro__idRoo__3D2915A8" FromRole="animalGroup" ToRole="Room" />
+          <NavigationProperty Name="groupType" Relationship="pigFermModel.FK__animalGro__idTyp__3C34F16F" FromRole="animalGroup" ToRole="groupType" />
+          <NavigationProperty Name="Animals" Relationship="pigFermModel.FK__Animals__group_i__45BE5BA9" FromRole="animalGroup" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ear_tag" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="birth_date" Type="DateTime" Precision="0" />
+          <Property Name="breed" Type="Int32" />
+          <Property Name="arrival_date" Type="DateTime" Precision="0" />
+          <Property Name="origin" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="mother_id" Type="Int32" />
+          <Property Name="father_id" Type="Int32" />
+          <Property Name="group_id" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="animalGroup" Relationship="pigFermModel.FK__Animals__group_i__45BE5BA9" FromRole="Animal" ToRole="animalGroup" />
+          <NavigationProperty Name="breed1" Relationship="pigFermModel.FK__Animals__breed__42E1EEFE" FromRole="Animal" ToRole="breed" />
+          <NavigationProperty Name="Animals1" Relationship="pigFermModel.FK__Animals__father___44CA3770" FromRole="Animal" ToRole="Animal1" />
+          <NavigationProperty Name="Animal1" Relationship="pigFermModel.FK__Animals__father___44CA3770" FromRole="Animal1" ToRole="Animal" />
+          <NavigationProperty Name="Animals11" Relationship="pigFermModel.FK__Animals__mother___43D61337" FromRole="Animal" ToRole="Animal1" />
+          <NavigationProperty Name="Animal2" Relationship="pigFermModel.FK__Animals__mother___43D61337" FromRole="Animal1" ToRole="Animal" />
+        </EntityType>
         <EntityType Name="breed">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nameBreed" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Animals" Relationship="pigFermModel.FK__Animals__breed__42E1EEFE" FromRole="breed" ToRole="Animal" />
         </EntityType>
         <EntityType Name="department">
           <Key>
@@ -224,12 +486,31 @@
           <Property Name="nameDepartment" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="posts" Relationship="pigFermModel.postDepartment" FromRole="department" ToRole="post" />
         </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="midleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="pasport" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="snils" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="inn" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="animalGroups" Relationship="pigFermModel.FK__animalGro__idEmp__3E1D39E1" FromRole="employee" ToRole="animalGroup" />
+          <NavigationProperty Name="posts" Relationship="pigFermModel.employeePost" FromRole="employee" ToRole="post" />
+        </EntityType>
         <EntityType Name="EventType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nameEvent" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="events" Relationship="pigFermModel.FK__events__nameEven__0D44F85C" FromRole="EventType" ToRole="event" />
         </EntityType>
         <EntityType Name="groupType">
           <Key>
@@ -237,6 +518,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nameGroup" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="animalGroups" Relationship="pigFermModel.FK__animalGro__idTyp__3C34F16F" FromRole="groupType" ToRole="animalGroup" />
         </EntityType>
         <EntityType Name="post">
           <Key>
@@ -245,8 +527,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="namePost" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="salary" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="departments" Relationship="pigFermModel.postDepartment" FromRole="post" ToRole="department" />
           <NavigationProperty Name="employees" Relationship="pigFermModel.employeePost" FromRole="post" ToRole="employee" />
+          <NavigationProperty Name="departments" Relationship="pigFermModel.postDepartment" FromRole="post" ToRole="department" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -258,6 +540,7 @@
           <Property Name="currentCount" Type="Int32" />
           <Property Name="locationNotes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="typeRoom" Type="Int32" />
+          <NavigationProperty Name="animalGroups" Relationship="pigFermModel.FK__animalGro__idRoo__3D2915A8" FromRole="Room" ToRole="animalGroup" />
           <NavigationProperty Name="roomType" Relationship="pigFermModel.FK__Rooms__typeRoom__6383C8BA" FromRole="Room" ToRole="roomType" />
         </EntityType>
         <EntityType Name="roomType">
@@ -268,6 +551,90 @@
           <Property Name="nameRoomTtpes" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Rooms" Relationship="pigFermModel.FK__Rooms__typeRoom__6383C8BA" FromRole="roomType" ToRole="Room" />
         </EntityType>
+        <Association Name="FK__animalGro__idEmp__3E1D39E1">
+          <End Type="pigFermModel.employee" Role="employee" Multiplicity="0..1" />
+          <End Type="pigFermModel.animalGroup" Role="animalGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="animalGroup">
+              <PropertyRef Name="idEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__animalGro__idRoo__3D2915A8">
+          <End Type="pigFermModel.Room" Role="Room" Multiplicity="0..1" />
+          <End Type="pigFermModel.animalGroup" Role="animalGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="animalGroup">
+              <PropertyRef Name="idRoom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__animalGro__idTyp__3C34F16F">
+          <End Type="pigFermModel.groupType" Role="groupType" Multiplicity="0..1" />
+          <End Type="pigFermModel.animalGroup" Role="animalGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="groupType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="animalGroup">
+              <PropertyRef Name="idType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animals__group_i__45BE5BA9">
+          <End Type="pigFermModel.animalGroup" Role="animalGroup" Multiplicity="0..1" />
+          <End Type="pigFermModel.Animal" Role="Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animalGroup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animals__breed__42E1EEFE">
+          <End Type="pigFermModel.breed" Role="breed" Multiplicity="0..1" />
+          <End Type="pigFermModel.Animal" Role="Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="breed">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="breed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animals__father___44CA3770">
+          <End Type="pigFermModel.Animal" Role="Animal" Multiplicity="0..1" />
+          <End Type="pigFermModel.Animal" Role="Animal1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Animal1">
+              <PropertyRef Name="father_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animals__mother___43D61337">
+          <End Type="pigFermModel.Animal" Role="Animal" Multiplicity="0..1" />
+          <End Type="pigFermModel.Animal" Role="Animal1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Animal1">
+              <PropertyRef Name="mother_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Rooms__typeRoom__6383C8BA">
           <End Type="pigFermModel.roomType" Role="roomType" Multiplicity="0..1" />
           <End Type="pigFermModel.Room" Role="Room" Multiplicity="*" />
@@ -280,30 +647,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="employeePost">
+          <End Type="pigFermModel.employee" Role="employee" Multiplicity="*" />
+          <End Type="pigFermModel.post" Role="post" Multiplicity="*" />
+        </Association>
         <Association Name="postDepartment">
           <End Type="pigFermModel.department" Role="department" Multiplicity="*" />
           <End Type="pigFermModel.post" Role="post" Multiplicity="*" />
         </Association>
-        <EntityType Name="employee">
+        <EntityType Name="feed">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="firstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="midleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="lastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="pasport" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="snils" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="inn" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="posts" Relationship="pigFermModel.employeePost" FromRole="employee" ToRole="post" />
-          <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="reserv" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="employeePost">
-          <End Type="pigFermModel.employee" Role="employee" Multiplicity="*" />
-          <End Type="pigFermModel.post" Role="post" Multiplicity="*" />
+        <EntityType Name="event">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nameEventId" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EventType" Relationship="pigFermModel.FK__events__nameEven__0D44F85C" FromRole="event" ToRole="EventType" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__events__nameEven__0D44F85C">
+          <End Type="pigFermModel.EventType" Role="EventType" Multiplicity="0..1" />
+          <End Type="pigFermModel.event" Role="event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="event">
+              <PropertyRef Name="nameEventId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -311,6 +703,34 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище pigFermModelContainer" CdmEntityContainer="pigFermEntities">
+          <EntitySetMapping Name="animalGroups">
+            <EntityTypeMapping TypeName="pigFermModel.animalGroup">
+              <MappingFragment StoreEntitySet="animalGroup">
+                <ScalarProperty Name="idEmployee" ColumnName="idEmployee" />
+                <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+                <ScalarProperty Name="idType" ColumnName="idType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Animals">
+            <EntityTypeMapping TypeName="pigFermModel.Animal">
+              <MappingFragment StoreEntitySet="Animals">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="father_id" ColumnName="father_id" />
+                <ScalarProperty Name="mother_id" ColumnName="mother_id" />
+                <ScalarProperty Name="origin" ColumnName="origin" />
+                <ScalarProperty Name="arrival_date" ColumnName="arrival_date" />
+                <ScalarProperty Name="breed" ColumnName="breed" />
+                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ear_tag" ColumnName="ear_tag" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="breeds">
             <EntityTypeMapping TypeName="pigFermModel.breed">
               <MappingFragment StoreEntitySet="breeds">
@@ -323,6 +743,23 @@
             <EntityTypeMapping TypeName="pigFermModel.department">
               <MappingFragment StoreEntitySet="department">
                 <ScalarProperty Name="nameDepartment" ColumnName="nameDepartment" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="pigFermModel.employee">
+              <MappingFragment StoreEntitySet="employees">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="inn" ColumnName="inn" />
+                <ScalarProperty Name="snils" ColumnName="snils" />
+                <ScalarProperty Name="pasport" ColumnName="pasport" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="midleName" ColumnName="midleName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -372,31 +809,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="postDepartment" TypeName="pigFermModel.postDepartment" StoreEntitySet="postDepartment">
-            <EndProperty Name="post">
-              <ScalarProperty Name="id" ColumnName="idPost" />
-            </EndProperty>
-            <EndProperty Name="department">
-              <ScalarProperty Name="id" ColumnName="idDepartment" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="employees">
-            <EntityTypeMapping TypeName="pigFermModel.employee">
-              <MappingFragment StoreEntitySet="employees">
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="birthday" ColumnName="birthday" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="inn" ColumnName="inn" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="snils" ColumnName="snils" />
-                <ScalarProperty Name="pasport" ColumnName="pasport" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="midleName" ColumnName="midleName" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="employeePost" TypeName="pigFermModel.employeePost" StoreEntitySet="employeePost">
             <EndProperty Name="post">
               <ScalarProperty Name="id" ColumnName="idPost" />
@@ -405,6 +817,46 @@
               <ScalarProperty Name="id" ColumnName="idemployee" />
             </EndProperty>
           </AssociationSetMapping>
+          <AssociationSetMapping Name="postDepartment" TypeName="pigFermModel.postDepartment" StoreEntitySet="postDepartment">
+            <EndProperty Name="post">
+              <ScalarProperty Name="id" ColumnName="idPost" />
+            </EndProperty>
+            <EndProperty Name="department">
+              <ScalarProperty Name="id" ColumnName="idDepartment" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="feeds">
+            <EntityTypeMapping TypeName="pigFermModel.feed">
+              <MappingFragment StoreEntitySet="feeds">
+                <ScalarProperty Name="reserv" ColumnName="reserv" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="events">
+            <EntityTypeMapping TypeName="pigFermModel.event">
+              <MappingFragment StoreEntitySet="events">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="nameEventId" ColumnName="nameEventId" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="pigFermModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

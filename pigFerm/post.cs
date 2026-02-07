@@ -17,8 +17,8 @@ namespace pigFerm
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public post()
         {
-            this.departments = new HashSet<department>();
             this.employees = new HashSet<employee>();
+            this.departments = new HashSet<department>();
         }
     
         public int id { get; set; }
@@ -26,8 +26,8 @@ namespace pigFerm
         public decimal salary { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<department> departments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<employee> employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<department> departments { get; set; }
     }
 }

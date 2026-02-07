@@ -12,18 +12,12 @@ namespace pigFerm
     using System;
     using System.Collections.Generic;
     
-    public partial class breed
+    public partial class feed
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public breed()
-        {
-            this.Animals = new HashSet<Animal>();
-        }
-    
         public int id { get; set; }
-        public string nameBreed { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Animal> Animals { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public string unit { get; set; }
+        public int reserv { get; set; }
     }
 }

@@ -67,6 +67,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Animal.cs">
+      <DependentUpon>pigFermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="animalGroup.cs">
+      <DependentUpon>pigFermModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="department.cs">
       <DependentUpon>pigFermModel.tt</DependentUpon>
     </Compile>
@@ -76,11 +82,17 @@
     <Compile Include="EventType.cs">
       <DependentUpon>pigFermModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="feed.cs">
+      <DependentUpon>pigFermModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="groupType.cs">
       <DependentUpon>pigFermModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pages\employeesPage.xaml.cs">
       <DependentUpon>employeesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\PostsPage.xaml.cs">
+      <DependentUpon>PostsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Room.cs">
       <DependentUpon>pigFermModel.tt</DependentUpon>
@@ -107,6 +119,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="pages\employeesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\PostsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

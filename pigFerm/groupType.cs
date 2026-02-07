@@ -14,7 +14,16 @@ namespace pigFerm
     
     public partial class groupType
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public groupType()
+        {
+            this.animalGroups = new HashSet<animalGroup>();
+        }
+    
         public int id { get; set; }
         public string nameGroup { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<animalGroup> animalGroups { get; set; }
     }
 }

@@ -31,5 +31,10 @@ namespace pigFerm
         {
             mainFrame.Navigate(new employeesPage());
         }
+
+        private void postBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new PostsPage());
+        }
     }
 }

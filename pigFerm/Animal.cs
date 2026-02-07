@@ -12,30 +12,35 @@ namespace pigFerm
     using System;
     using System.Collections.Generic;
     
-    public partial class employee
+    public partial class Animal
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public employee()
+        public Animal()
         {
-            this.animalGroups = new HashSet<animalGroup>();
-            this.posts = new HashSet<post>();
+            this.Animals1 = new HashSet<Animal>();
+            this.Animals11 = new HashSet<Animal>();
         }
     
         public int id { get; set; }
-        public string firstName { get; set; }
-        public string midleName { get; set; }
-        public string lastName { get; set; }
+        public string ear_tag { get; set; }
+        public string name { get; set; }
         public string gender { get; set; }
-        public System.DateTime birthday { get; set; }
-        public string pasport { get; set; }
-        public string snils { get; set; }
-        public string inn { get; set; }
-        public string phone { get; set; }
-        public string email { get; set; }
+        public Nullable<System.DateTime> birth_date { get; set; }
+        public Nullable<int> breed { get; set; }
+        public Nullable<System.DateTime> arrival_date { get; set; }
+        public string origin { get; set; }
+        public Nullable<int> mother_id { get; set; }
+        public Nullable<int> father_id { get; set; }
+        public Nullable<int> group_id { get; set; }
+        public string status { get; set; }
     
+        public virtual animalGroup animalGroup { get; set; }
+        public virtual breed breed1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<animalGroup> animalGroups { get; set; }
+        public virtual ICollection<Animal> Animals1 { get; set; }
+        public virtual Animal Animal1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<post> posts { get; set; }
+        public virtual ICollection<Animal> Animals11 { get; set; }
+        public virtual Animal Animal2 { get; set; }
     }
 }

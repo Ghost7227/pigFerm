@@ -14,6 +14,7 @@
 
         <StackPanel>
             <Button Content="Сотрудники" Name="employeeBtn" Click="employeeBtn_Click"/>
+            <Button Content="Должности" Name="postBtn" Click="postBtn_Click"/>
         </StackPanel>
 
         <Frame Name="mainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>

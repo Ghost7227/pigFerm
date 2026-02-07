@@ -24,6 +24,11 @@ namespace pigFerm.pages
         public employeesPage()
         {
             InitializeComponent();
+            loadData();
+        }
+
+        void loadData()
+        {
             employeeLV.ItemsSource = App.db.employees.ToList();
         }
 
@@ -35,6 +40,7 @@ namespace pigFerm.pages
                 if(createOrEditEmployeeWindow.DialogResult == true)
                 {
                     MessageBox.Show("Сотрудник добавлен");
+                    loadData();
                 }
             }
         }

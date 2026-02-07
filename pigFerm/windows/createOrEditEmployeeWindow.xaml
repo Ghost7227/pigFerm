@@ -26,39 +26,41 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="Фамилия:"/>
-        <TextBox Name="lastNameTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1"/>
+        <TextBox Name="lastNameTB" Grid.Column="1" LostFocus="lastNameTB_LostFocus"/>
 
         <TextBlock Grid.Row="1" Text="Имя:"/>
-        <TextBox Name="firstNameTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="1"/>
+        <TextBox Name="firstNameTB" Grid.Column="1" Grid.Row="1" LostFocus="firstNameTB_LostFocus"/>
 
         <TextBlock Grid.Row="2" Text="Отчество:"/>
         <StackPanel Grid.Column="1" Grid.Row="2">
-            <TextBox Name="midleNameTB" TextChanged="lastNameTB_TextChanged"/>
-            <CheckBox Content="Отчество отсутствует"/>
+            <TextBox Name="midleNameTB" TextChanged="midleNameTB_TextChanged"/>
+            <CheckBox Content="Отчество отсутствует" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
         </StackPanel>
 
-        <TextBlock Grid.Row="3" Text="Дата рождения:"/>
-        <DatePicker Grid.Column="1" Grid.Row="3" SelectedDateFormat="Long"/>
+        <TextBlock Grid.Row="3" Text="Дата рождения:" TextWrapping="Wrap"/>
+        <DatePicker Grid.Column="1" Grid.Row="3" SelectedDateFormat="Long" Name="bdDatePicker" SelectedDateChanged="bdDatePicker_SelectedDateChanged"/>
 
         <TextBlock Grid.Row="4" Text="Пол:"/>
         <StackPanel Grid.Column="1" Grid.Row="4">
-            <RadioButton Content="Мужчина"/>
-            <RadioButton Content="Женщина"/>
+            <RadioButton Content="Мужчина" Name="mGenderRB" Checked="mGenderRB_Checked"/>
+            <RadioButton Content="Женщина" Name="wGenderRB" Checked="wGenderRB_Checked"/>
         </StackPanel>
 
-        <TextBlock Grid.Row="5" Text="Серия и номер паспорта:"/>
-        <TextBox Name="pasportTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="5"/>
+        <TextBlock Grid.Row="5" Text="Серия и номер паспорта (без пробела):" TextWrapping="Wrap"/>
+        <TextBox Name="pasportTB" Grid.Column="1" Grid.Row="5" PreviewTextInput="pasportTB_PreviewTextInput" MaxLength="10"/>
 
-        <TextBlock Grid.Row="6" Text="СНИЛС:"/>
-        <TextBox Name="snilsTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="6"/>
+        <TextBlock Grid.Row="6" Text="СНИЛС (без пробелов и тире):" TextWrapping="Wrap"/>
+        <TextBox Name="snilsTB" Grid.Column="1" Grid.Row="6" PreviewTextInput="pasportTB_PreviewTextInput" MaxLength="11"/>
 
         <TextBlock Grid.Row="7" Text="ИНН:"/>
-        <TextBox Name="innTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="7"/>
+        <TextBox Name="innTB" Grid.Column="1" Grid.Row="7" MaxLength="12" PreviewTextInput="pasportTB_PreviewTextInput"/>
 
-        <TextBlock Grid.Row="8" Text="Электронная почта:"/>
-        <TextBox Name="emailTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="8"/>
+        <TextBlock Grid.Row="8" Text="Электронная почта:" TextWrapping="Wrap"/>
+        <TextBox Name="emailTB" Grid.Column="1" Grid.Row="8"/>
 
-        <TextBlock Grid.Row="9" Text="Номер телефона:"/>
-        <TextBox Name="phoneTB" TextChanged="lastNameTB_TextChanged" Grid.Column="1" Grid.Row="9"/>
+        <TextBlock Grid.Row="9" Text="Номер телефона (начиная с 8):" TextWrapping="Wrap"/>
+        <TextBox Name="phoneTB" Grid.Column="1" Grid.Row="9" MaxLength="11" PreviewTextInput="pasportTB_PreviewTextInput"/>
+
+        <Button Content="Сохранить" HorizontalAlignment="Right" Name="saveBtn" Click="SaveBtn_Click" Grid.Column="1" Grid.Row="10" IsEnabled="False" ToolTip="Для разблокировки кнопки заполните все поля"/>
     </Grid>
 </Window>
