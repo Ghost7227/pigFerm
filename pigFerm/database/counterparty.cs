@@ -7,27 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pigFerm
+namespace pigFerm.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class post
+    public partial class counterparty
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public post()
+        public counterparty()
         {
-            this.employees = new HashSet<employee>();
-            this.departments = new HashSet<department>();
+            this.shipments = new HashSet<shipment>();
         }
     
         public int id { get; set; }
-        public string namePost { get; set; }
-        public decimal salary { get; set; }
+        public string nameCounterparties { get; set; }
+        public string adres { get; set; }
+        public string description { get; set; }
+        public bool isRegular { get; set; }
+        public string category { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<employee> employees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<department> departments { get; set; }
+        public virtual ICollection<shipment> shipments { get; set; }
     }
 }

@@ -7,16 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pigFerm
+namespace pigFerm.database
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class pigFermEntities : DbContext
+    public partial class fermEntities : DbContext
     {
-        public pigFermEntities()
-            : base("name=pigFermEntities")
+        public fermEntities()
+            : base("name=fermEntities")
         {
         }
     
@@ -25,18 +27,31 @@ namespace pigFerm
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<animalGroup> animalGroups { get; set; }
+        public virtual DbSet<AnimalGroup> AnimalGroups { get; set; }
         public virtual DbSet<Animal> Animals { get; set; }
         public virtual DbSet<breed> breeds { get; set; }
+        public virtual DbSet<counterparty> counterparties { get; set; }
         public virtual DbSet<department> departments { get; set; }
         public virtual DbSet<employee> employees { get; set; }
+        public virtual DbSet<EventEmployee> EventEmployees { get; set; }
+        public virtual DbSet<@event> events { get; set; }
         public virtual DbSet<EventType> EventTypes { get; set; }
         public virtual DbSet<groupType> groupTypes { get; set; }
         public virtual DbSet<post> posts { get; set; }
-        public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<product> products { get; set; }
+        public virtual DbSet<productShipment> productShipments { get; set; }
+        public virtual DbSet<productType> productTypes { get; set; }
+        public virtual DbSet<room> rooms { get; set; }
         public virtual DbSet<roomType> roomTypes { get; set; }
-        public virtual DbSet<feed> feeds { get; set; }
-        public virtual DbSet<@event> events { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<shipment> shipments { get; set; }
+    
+        public virtual int addNewRoomType(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("addNewRoomType", nameParameter);
+        }
     }
 }

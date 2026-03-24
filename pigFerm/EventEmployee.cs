@@ -12,23 +12,13 @@ namespace pigFerm
     using System;
     using System.Collections.Generic;
     
-    public partial class animalGroup
+    public partial class EventEmployee
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public animalGroup()
-        {
-            this.Animals = new HashSet<Animal>();
-        }
-    
-        public int id { get; set; }
-        public Nullable<int> idType { get; set; }
-        public Nullable<int> idRoom { get; set; }
-        public Nullable<int> idEmployee { get; set; }
+        public int eventId { get; set; }
+        public int employeeId { get; set; }
+        public string description { get; set; }
     
         public virtual employee employee { get; set; }
-        public virtual Room Room { get; set; }
-        public virtual groupType groupType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Animal> Animals { get; set; }
+        public virtual @event @event { get; set; }
     }
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f002f6db3dbe49fd9b9b9f0b8b4ef88e" Name="Diagram1" ZoomLevel="115">
+        <EntityTypeShape EntityType="fermModel.AnimalGroup" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.Animal" Width="1.5" PointX="9.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.breed" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.counterparty" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.department" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.employee" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.EventEmployee" Width="1.5" PointX="14.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.event" Width="1.5" PointX="12" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.EventType" Width="1.5" PointX="9.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.groupType" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.post" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.product" Width="1.5" PointX="17.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.productShipment" Width="1.5" PointX="19.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.productType" Width="1.5" PointX="15" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.room" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.roomType" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="fermModel.shipment" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="fermModel.FK__AnimalGro__idEmp__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__AnimalGro__idRoo__18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__AnimalGro__idTyp__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__Animals__group_i__22751F6C" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__Animals__breed__1F98B2C1" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__Animals__father___2180FB33" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__Animals__mother___208CD6FA" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__shipments__idCou__282DF8C2" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__posts__idDeparta__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__employees__idpos__10566F31" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__EventEmpl__emplo__43D61337" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__EventEmpl__event__42E1EEFE" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__events__idType__31B762FC" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__products__idEven__37703C52" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__productSh__idShi__3B40CD36" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__products__idType__3587F3E0" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__productSh__idPro__3A4CA8FD" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__rooms__typeRoom__151B244E" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.EventAnimal" ManuallyRouted="false" />
+        <AssociationConnector Association="fermModel.FK__productSh__idShi__503BEA1C" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
