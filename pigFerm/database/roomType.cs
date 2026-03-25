@@ -7,28 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pigFerm
+namespace pigFerm.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Room
+    public partial class roomType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Room()
+        public roomType()
         {
-            this.animalGroups = new HashSet<animalGroup>();
+            this.rooms = new HashSet<room>();
         }
     
         public int id { get; set; }
-        public string adres { get; set; }
-        public Nullable<int> capacity { get; set; }
-        public Nullable<int> currentCount { get; set; }
-        public string locationNotes { get; set; }
-        public Nullable<int> typeRoom { get; set; }
+        public string nameRoomTtpes { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<animalGroup> animalGroups { get; set; }
-        public virtual roomType roomType { get; set; }
+        public virtual ICollection<room> rooms { get; set; }
     }
 }

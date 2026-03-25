@@ -7,23 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pigFerm
+namespace pigFerm.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class breed
+    public partial class product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public breed()
+        public product()
         {
-            this.Animals = new HashSet<Animal>();
+            this.productShipments = new HashSet<productShipment>();
         }
     
         public int id { get; set; }
-        public string nameBreed { get; set; }
+        public int quantity { get; set; }
+        public string descriiption { get; set; }
+        public int idType { get; set; }
+        public System.DateTime prodauctionDate { get; set; }
+        public System.DateTime expirationDate { get; set; }
+        public int idEvent { get; set; }
     
+        public virtual @event @event { get; set; }
+        public virtual productType productType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Animal> Animals { get; set; }
+        public virtual ICollection<productShipment> productShipments { get; set; }
     }
 }

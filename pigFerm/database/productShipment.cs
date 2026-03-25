@@ -7,23 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pigFerm
+namespace pigFerm.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class groupType
+    public partial class productShipment
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public groupType()
-        {
-            this.animalGroups = new HashSet<animalGroup>();
-        }
+        public int idProduct { get; set; }
+        public int idShipment { get; set; }
+        public int quantity { get; set; }
     
-        public int id { get; set; }
-        public string nameGroup { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<animalGroup> animalGroups { get; set; }
+        public virtual @event @event { get; set; }
+        public virtual product product { get; set; }
+        public virtual shipment shipment { get; set; }
     }
 }

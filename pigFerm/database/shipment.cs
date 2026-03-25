@@ -7,14 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pigFerm
+namespace pigFerm.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class EventType
+    public partial class shipment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public shipment()
+        {
+            this.productShipments = new HashSet<productShipment>();
+        }
+    
         public int id { get; set; }
-        public string nameEvent { get; set; }
+        public int idCounterapies { get; set; }
+        public System.DateTime date { get; set; }
+        public decimal sum { get; set; }
+    
+        public virtual counterparty counterparty { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<productShipment> productShipments { get; set; }
     }
 }

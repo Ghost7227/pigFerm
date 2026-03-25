@@ -7,35 +7,35 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pigFerm
+namespace pigFerm.database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class employee
+    public partial class @event
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public employee()
+        public @event()
         {
-            this.animalGroups = new HashSet<animalGroup>();
-            this.posts = new HashSet<post>();
+            this.EventEmployees = new HashSet<EventEmployee>();
+            this.products = new HashSet<product>();
+            this.productShipments = new HashSet<productShipment>();
+            this.Animals = new HashSet<Animal>();
         }
     
         public int id { get; set; }
-        public string firstName { get; set; }
-        public string midleName { get; set; }
-        public string lastName { get; set; }
-        public string gender { get; set; }
-        public System.DateTime birthday { get; set; }
-        public string pasport { get; set; }
-        public string snils { get; set; }
-        public string inn { get; set; }
-        public string phone { get; set; }
-        public string email { get; set; }
+        public System.DateTime dateTime { get; set; }
+        public int idType { get; set; }
+        public string descriiption { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<animalGroup> animalGroups { get; set; }
+        public virtual ICollection<EventEmployee> EventEmployees { get; set; }
+        public virtual EventType EventType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<post> posts { get; set; }
+        public virtual ICollection<product> products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<productShipment> productShipments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Animal> Animals { get; set; }
     }
 }

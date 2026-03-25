@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pigFerm.database;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,6 +14,6 @@ namespace pigFerm
     /// </summary>
     public partial class App : Application
     {
-        public static pigFermEntities db = new pigFermEntities();
+        public static fermEntities db = new fermEntities();
     }
 }

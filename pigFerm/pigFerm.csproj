@@ -67,26 +67,71 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Animal.cs">
-      <DependentUpon>pigFermModel.tt</DependentUpon>
+    <Compile Include="database\Animal.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="animalGroup.cs">
-      <DependentUpon>pigFermModel.tt</DependentUpon>
+    <Compile Include="database\AnimalGroup.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="department.cs">
-      <DependentUpon>pigFermModel.tt</DependentUpon>
+    <Compile Include="database\breed.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="employee.cs">
-      <DependentUpon>pigFermModel.tt</DependentUpon>
+    <Compile Include="database\counterparty.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EventType.cs">
-      <DependentUpon>pigFermModel.tt</DependentUpon>
+    <Compile Include="database\department.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="feed.cs">
-      <DependentUpon>pigFermModel.tt</DependentUpon>
+    <Compile Include="database\employee.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="groupType.cs">
-      <DependentUpon>pigFermModel.tt</DependentUpon>
+    <Compile Include="database\event.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\EventEmployee.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\EventType.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\fermModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>fermModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\fermModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>fermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\fermModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>fermModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="database\groupType.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\post.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\product.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\productShipment.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\productType.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\room.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\roomType.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\shipment.cs">
+      <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pages\employeesPage.xaml.cs">
       <DependentUpon>employeesPage.xaml</DependentUpon>
@@ -94,11 +139,11 @@
     <Compile Include="pages\PostsPage.xaml.cs">
       <DependentUpon>PostsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Room.cs">
-      <DependentUpon>pigFermModel.tt</DependentUpon>
+    <Compile Include="pages\RoomsPage.xaml.cs">
+      <DependentUpon>RoomsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="roomType.cs">
-      <DependentUpon>pigFermModel.tt</DependentUpon>
+    <Compile Include="windows\AddNewRoomAndRoomTypeWindow.xaml.cs">
+      <DependentUpon>AddNewRoomAndRoomTypeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\createOrEditEmployeeWindow.xaml.cs">
       <DependentUpon>createOrEditEmployeeWindow.xaml</DependentUpon>
@@ -110,9 +155,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="breed.cs">
-      <DependentUpon>pigFermModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -126,30 +168,20 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\RoomsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddNewRoomAndRoomTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\createOrEditEmployeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pigFermModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>pigFermModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="pigFermModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>pigFermModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="pigFermModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>pigFermModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="post.cs">
-      <DependentUpon>pigFermModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -167,14 +199,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
-    <EntityDeploy Include="pigFermModel.edmx">
+    <EntityDeploy Include="database\fermModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>pigFermModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>fermModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="pigFermModel.edmx.diagram">
-      <DependentUpon>pigFermModel.edmx</DependentUpon>
+    <None Include="database\fermModel.edmx.diagram">
+      <DependentUpon>fermModel.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -184,19 +216,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="pigFermModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>pigFermModel.Context.cs</LastGenOutput>
-      <DependentUpon>pigFermModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="pigFermModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>pigFermModel.edmx</DependentUpon>
-      <LastGenOutput>pigFermModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="database\fermModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>fermModel.edmx</DependentUpon>
+      <LastGenOutput>fermModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="database\fermModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>fermModel.edmx</DependentUpon>
+      <LastGenOutput>fermModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
