@@ -57,7 +57,7 @@ namespace pigFerm.windows
                     App.db.roomTypes.Add(roomType);
                     App.db.SaveChanges();
 
-                    MessageBox.Show("Сохранено");
+                MessageBox.Show("Сохранено");
                     Close();
                 }
                 catch(Exception)

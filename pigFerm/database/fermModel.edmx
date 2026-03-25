@@ -419,6 +419,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="addNewRoomType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="Хранилище fermModelContainer">
           <EntitySet Name="AnimalGroup" EntityType="Self.AnimalGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Animals" EntityType="Self.Animals" Schema="dbo" store:Type="Tables" />
@@ -1258,6 +1261,7 @@
               <ScalarProperty Name="id" ColumnName="eventId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="addNewRoomType" FunctionName="Хранилище fermModel.addNewRoomType" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
