@@ -136,11 +136,17 @@
     <Compile Include="pages\employeesPage.xaml.cs">
       <DependentUpon>employeesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\EventPage.xaml.cs">
+      <DependentUpon>EventPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\PostsPage.xaml.cs">
       <DependentUpon>PostsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\RoomsPage.xaml.cs">
       <DependentUpon>RoomsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\AddNewDepartamentWindow.xaml.cs">
+      <DependentUpon>AddNewDepartamentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\AddNewRoomAndRoomTypeWindow.xaml.cs">
       <DependentUpon>AddNewRoomAndRoomTypeWindow.xaml</DependentUpon>
@@ -164,11 +170,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\EventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\PostsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\RoomsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddNewDepartamentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using pigFerm.windows;
 
 namespace pigFerm.pages
 {
@@ -23,7 +24,20 @@ namespace pigFerm.pages
         public PostsPage()
         {
             InitializeComponent();
+            LoadData();
+        }
+
+        void LoadData()
+        {
             PostsListView.ItemsSource = App.db.posts.ToList();
+            DepartamentListView.ItemsSource = App.db.departments.ToList();
+        }
+
+        private void addNewDepartamentBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewDepartamentWindow addNewDepartamentWindow = new AddNewDepartamentWindow();
+            addNewDepartamentWindow.ShowDialog();
+            LoadData();
         }
     }
 }

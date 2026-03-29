@@ -23,19 +23,38 @@
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="10*"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding id}"/>
-                                <TextBlock Text="{Binding roomType.nameRoomTtpes}" Grid.Column="1"/>
 
-                                <TextBlock Text="{Binding adres}" Grid.Column="2"/>
-                                <StackPanel Grid.Column="3">
-                                    <TextBlock Text="{Binding capacity}"/>
-                                    <TextBlock Text="{Binding currentCount}"/>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                    <TextBlock Text="Тип: "/>
+                                    <TextBlock Text="{Binding roomType.nameRoomTtpes}"/>
                                 </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="2">
+                                    <TextBlock Text="Адрес: "/>
+                                    <TextBlock Text="{Binding adres}"/>
+                                </StackPanel>
+                                
+                                <StackPanel Grid.Column="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Заполнено "/>
+                                        <TextBlock Text="{Binding currentCount}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="из "/>
+                                        <TextBlock Text="{Binding capacity}"/>
+                                        <TextBlock Text=" мест"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <TextBlock Text="{Binding locationNotes}" Grid.Column="3"/>
+                                
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

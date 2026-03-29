@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using pigFerm.database;
+using pigFerm.windows;
 
 namespace pigFerm.windows
 {
@@ -35,7 +36,7 @@ namespace pigFerm.windows
             else if(target == "room")
             {
                 createRoomTypeGrid.Visibility = Visibility.Collapsed;
-                roonTypeCB.ItemsSource = App.db.roomTypes.ToList();
+                roomTypeCB.ItemsSource = App.db.roomTypes.ToList();
             }
             else
             {
@@ -74,7 +75,7 @@ namespace pigFerm.windows
         private void addNewRoomBtn_Click(object sender, RoutedEventArgs e)
         {
             roomType roomType = null;
-            if (roonTypeCB.SelectedItem != null) roomType = roonTypeCB.SelectedItem as roomType;
+            if (roomTypeCB.SelectedItem != null) roomType = roomTypeCB.SelectedItem as roomType;
             else MessageBox.Show("Выберите тип помещения!");
 
             string adres = string.Empty;
@@ -82,18 +83,20 @@ namespace pigFerm.windows
             else MessageBox.Show("Введите адрес!");
 
             int capacity = -1;
-            if(capacityTB.Text != string.Empty && capacityTB.Text.Any(ch => char.IsDigit(ch)))
+            int parseCapacity = 0;
+            if(capacityTB.Text != string.Empty && int.TryParse(currentCountTB.Text, out parseCapacity))
             {
-                capacity = Convert.ToInt32(capacityTB.Text);
+                capacity = parseCapacity;
                 if(capacity < 0) MessageBox.Show("Вместимость не может быть отрицательной!"); 
             }
             else if(capacityTB.Text.Any(ch => !char.IsDigit(ch))) MessageBox.Show("Вместимость должна содержать только цифры!");
             else MessageBox.Show("Укажите вместимость!");
 
             int currentCount = -1;
-            if (currentCountTB.Text != string.Empty && currentCountTB.Text.Any(ch => char.IsDigit(ch)))
+            int parse = 0;
+            if (currentCountTB.Text != string.Empty && int.TryParse(currentCountTB.Text, out parse))
             {
-                currentCount = Convert.ToInt32(currentCountTB.Text);
+                currentCount = parse;
                 if (currentCount < 0) MessageBox.Show("Количество занятых мест не может быть отрицательным!"); 
             }
             else if (currentCountTB.Text.Any(ch => !char.IsDigit(ch))) MessageBox.Show("Количество занятых мест должно содержать только цифры!");
@@ -130,6 +133,19 @@ namespace pigFerm.windows
             }
             else if(currentCount > capacity) MessageBox.Show("Количество занятых мест не может быть больше вместимости. \nИсправьте ошибки");
             else MessageBox.Show("Исправьте ошибки");
+        }
+
+        private void Number_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.All(char.IsDigit);
+        }
+
+        private void Number_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Space)
+            {
+                e.Handled= true;
+            }
         }
     }
 }

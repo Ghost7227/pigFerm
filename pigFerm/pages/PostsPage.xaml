@@ -8,15 +8,38 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PostsPage">
 
-    <Grid>
-        <ListView Name="PostsListView">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=id}"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=namePost}"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=salary}"/>
-                </GridView>   
-            </ListView.View>
-        </ListView>
-    </Grid>
+    <TabControl>
+        <TabItem Header="Отделы">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button Name="addNewDepartamentBtn" Content="Добавить новый отдел" Click="addNewDepartamentBtn_Click"/>
+
+                <ListView Name="DepartamentListView" Grid.Row="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=id}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=nameDepartment}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Должности">
+            <Grid>
+                <ListView Name="PostsListView">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=id}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=namePost}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=salary}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </TabItem>
+    </TabControl>
 </Page>

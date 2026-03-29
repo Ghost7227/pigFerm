@@ -26,16 +26,16 @@
             <TextBlock Text="Заполните данные:" Grid.ColumnSpan="2"/>
             
             <TextBlock Text="Тип помещения:" Grid.Row="1"/>
-            <ComboBox Name="roonTypeCB" Grid.Column="1" Grid.Row="1" DisplayMemberPath="nameRoomTtpes"/>
+            <ComboBox Name="roomTypeCB" Grid.Column="1" Grid.Row="1" DisplayMemberPath="nameRoomTtpes"/>
 
             <TextBlock Text="Адрес помещения:" Grid.Row="2"/>
             <TextBox Name="adresTB" Grid.Row="2" Grid.Column="1"/>
             
             <TextBlock Text="Вместимость:" Grid.Row="3"/>
-            <TextBox Name="capacityTB" Grid.Row="3" Grid.Column="1"/>
+            <TextBox Name="capacityTB" Grid.Row="3" Grid.Column="1" PreviewTextInput="Number_PreviewTextInput" PreviewKeyDown="Number_PreviewKeyDown"/>
             
             <TextBlock Text="Текущее количество занятых мест:" Grid.Row="4"/>
-            <TextBox Name="currentCountTB" Grid.Row="4" Grid.Column="1"/>
+            <TextBox Name="currentCountTB" Grid.Row="4" Grid.Column="1" PreviewTextInput="Number_PreviewTextInput" PreviewKeyDown="Number_PreviewKeyDown"/>
             
             <TextBlock Text="Описание помещения:" Grid.Row="5"/>
             <TextBox Name="locationNotesTB" Grid.Row="5" Grid.Column="1"/>
