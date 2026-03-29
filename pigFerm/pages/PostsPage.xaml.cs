@@ -39,5 +39,12 @@ namespace pigFerm.pages
             addNewDepartamentWindow.ShowDialog();
             LoadData();
         }
+
+        private void addNewPostBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewPostWindow addNewPostWindow = new AddNewPostWindow();
+            addNewPostWindow.ShowDialog();
+            LoadData();
+        }
     }
 }

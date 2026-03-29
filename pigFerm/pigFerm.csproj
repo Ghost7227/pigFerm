@@ -148,6 +148,9 @@
     <Compile Include="windows\AddNewDepartamentWindow.xaml.cs">
       <DependentUpon>AddNewDepartamentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\AddNewPostWindow.xaml.cs">
+      <DependentUpon>AddNewPostWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\AddNewRoomAndRoomTypeWindow.xaml.cs">
       <DependentUpon>AddNewRoomAndRoomTypeWindow.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\AddNewDepartamentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddNewPostWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

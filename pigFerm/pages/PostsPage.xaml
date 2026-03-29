@@ -30,7 +30,14 @@
         </TabItem>
         <TabItem Header="Должности">
             <Grid>
-                <ListView Name="PostsListView">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button Name="addNewPostBtn" Click="addNewPostBtn_Click" Content="Добавить должность"/>
+
+                <ListView Name="PostsListView" Grid.Row="1">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=id}"/>
