@@ -1,0 +1,16 @@
+﻿<Window x:Class="pigFerm.windows.AddOrEditEventTypeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pigFerm.windows"
+        mc:Ignorable="d"
+        Title="AddOrEditEventTypeWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel Name="typeEvent">
+            <TextBlock Text="Введите название типа события: "/>
+            <TextBox Name="nameTB"/>
+            <Button Name="saveTypeEventBtn" Content="Сохранить" Click="saveTypeEventBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

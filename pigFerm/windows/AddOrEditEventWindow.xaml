@@ -1,0 +1,36 @@
+﻿<Window x:Class="pigFerm.windows.AddOrEditEventWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pigFerm.windows"
+        mc:Ignorable="d"
+        Title="AddOrEditEventWindow" Height="450" Width="800">
+    <Grid>
+        <Grid Name="addGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Выберите тип события: " Grid.Row="1"/>
+            <ComboBox Name="eventtypeCB" Grid.Row="1" Grid.Column="1" DisplayMemberPath="nameEvent"/>
+
+            <TextBlock Text="Введите дату и время:" Grid.Row="2"/>
+            <TextBox Name="nameTB" Grid.Row="2" Grid.Column="1"/>
+
+            <TextBlock Text="Введите описание:" Grid.Row="3"/>
+            <TextBox Name="salaryTB" Grid.Row="3" Grid.Column="1"/>
+
+            <Button Name="saveBtn" Content="Сохранить" Click="saveBtn_Click" Grid.Row="4" Grid.Column="1"/>
+
+        </Grid>
+    </Grid>
+</Window>

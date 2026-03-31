@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using pigFerm.windows;
 
 namespace pigFerm.pages
 {
@@ -23,6 +24,29 @@ namespace pigFerm.pages
         public EventPage()
         {
             InitializeComponent();
+            LoadData();
+        }
+
+        void LoadData()
+        {
+            eventTypeLV.ItemsSource = App.db.EventTypes.ToList();
+            eventLV.ItemsSource = App.db.events.ToList();
+        }
+
+        private void addNewTypeEventBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string target = "add";
+            AddOrEditEventTypeWindow addOrEditEventTypeWindow = new AddOrEditEventTypeWindow(target);
+            addOrEditEventTypeWindow.ShowDialog();
+            LoadData();
+        }
+
+        private void addNewEventBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string target = "add";
+            AddOrEditEventWindow add = new AddOrEditEventWindow(target);
+            add.ShowDialog();
+            LoadData();
         }
     }
 }

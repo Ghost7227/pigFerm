@@ -16,6 +16,8 @@
             <Button Content="Сотрудники" Name="employeeBtn" Click="employeeBtn_Click"/>
             <Button Content="Отделы и должности" Name="postBtn" Click="postBtn_Click"/>
             <Button Content="Помещения" Name="roomBtn" Click="roomBtn_Click"/>
+            <Button Content="Контрагенты" Name="counterpartyBtn" Click="counterpartyBtn_Click"/>
+            <Button Content="События" Name="eventBtn" Click="eventBtn_Click"/>
         </StackPanel>
 
         <Frame Name="mainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>

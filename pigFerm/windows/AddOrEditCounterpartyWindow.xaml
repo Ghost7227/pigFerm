@@ -1,0 +1,42 @@
+﻿<Window x:Class="pigFerm.windows.AddOrEditCounterpartyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pigFerm.windows"
+        mc:Ignorable="d"
+        Title="AddOrEditCounterpartyWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Создание нового контрагента" HorizontalAlignment="Center"/>
+        <!-- Поля ввода -->
+        <Label Grid.Row="1" Grid.Column="0" Content="Наименование:"/>
+        <TextBox Name="txtName" Grid.Row="1" Grid.Column="1" Height="30" ToolTip="Введите наименование контрагента"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Адрес:"/>
+        <TextBox Name="txtAddress" Grid.Row="2" Grid.Column="1"/>
+
+         <Label Grid.Row="3" Grid.Column="0" Content="Описание:"/>
+        <TextBox Name="txtDescription" Grid.Row="3" Grid.Column="1" Height="60" TextWrapping="Wrap"/>
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Постоянный клиент:"/>
+        <CheckBox Name="chkIsRegular" Grid.Row="4" Grid.Column="1" Margin="5" Content="Да" VerticalAlignment="Center"/>
+        
+        <Button Name="btnSave" Content="Сохранить" Click="BtnSave_Click" Grid.Row="6" Grid.Column="1"/>
+         
+    </Grid>
+</Window>

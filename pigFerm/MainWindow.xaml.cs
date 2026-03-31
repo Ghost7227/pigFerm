@@ -41,5 +41,15 @@ namespace pigFerm
         {
             mainFrame.Navigate(new RoomsPage());
         }
+
+        private void counterpartyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new CounterpartiesPage());
+        }
+
+        private void eventBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new EventPage());
+        }
     }
 }

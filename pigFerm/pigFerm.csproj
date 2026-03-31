@@ -133,6 +133,9 @@
     <Compile Include="database\shipment.cs">
       <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="pages\CounterpartiesPage.xaml.cs">
+      <DependentUpon>CounterpartiesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\employeesPage.xaml.cs">
       <DependentUpon>employeesPage.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,15 @@
     <Compile Include="windows\AddNewRoomAndRoomTypeWindow.xaml.cs">
       <DependentUpon>AddNewRoomAndRoomTypeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\AddOrEditCounterpartyWindow.xaml.cs">
+      <DependentUpon>AddOrEditCounterpartyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\AddOrEditEventTypeWindow.xaml.cs">
+      <DependentUpon>AddOrEditEventTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\AddOrEditEventWindow.xaml.cs">
+      <DependentUpon>AddOrEditEventWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\createOrEditEmployeeWindow.xaml.cs">
       <DependentUpon>createOrEditEmployeeWindow.xaml</DependentUpon>
     </Compile>
@@ -169,6 +181,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="pages\CounterpartiesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\employeesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -194,6 +210,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\AddNewRoomAndRoomTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddOrEditCounterpartyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddOrEditEventTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddOrEditEventWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,6 +9,75 @@
       Title="EventPage">
 
     <Grid>
-        
+        <TabControl>
+            <TabItem Header="События">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Name="addNewEventBtn" Content="Добавить событие" Click="addNewEventBtn_Click"/>
+                    
+                    <ListView Name="eventLV" Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding id}"/>
+
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock Text="Дата и время: "/>
+                                        <TextBlock Text="{Binding dateTime}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2">
+                                        <TextBlock Text="Тип: "/>
+                                        <TextBlock Text="{Binding EventType}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="3">
+                                        <TextBlock Text="Описание: "/>
+                                        <TextBlock Text="{Binding descriiption}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Типы событий">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Name="addNewTypeEventBtn" Content="Добавить тип событий" Click="addNewTypeEventBtn_Click"/>
+
+                    <ListView Name="eventTypeLV" Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding id}"/>
+                                    <TextBlock Text="{Binding nameEvent}" Grid.Column="2"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>
