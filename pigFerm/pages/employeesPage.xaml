@@ -22,6 +22,63 @@
             
         </StackPanel>
 
-        <ListView Name="employeeLV" Grid.Row="1"/>
+        <ListView Name="employeeLV" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="{Binding id}" VerticalAlignment="Center" Grid.RowSpan="2"/>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding firstName}"/>
+                            <TextBlock Text="{Binding midleName}"/>
+                            <TextBlock Text="{Binding lastName}"/>
+                        </StackPanel>
+
+                        <TextBlock Text="{Binding birthday}" Grid.Column="1" Grid.Row="1"/>
+
+                        <TextBlock Text="{Binding gender}" Grid.Column="2"/>
+                        <TextBlock Text="{Binding post.namePost}"  Grid.Column="2" Grid.Row="1"/>
+
+                        <StackPanel Grid.Column="3" Orientation="Horizontal">
+                            <TextBlock Text="паспорт: "/>
+                            <TextBlock Text="{Binding pasport}"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Horizontal">
+                            <TextBlock Text="ИНН: "/>
+                            <TextBlock Text="{Binding inn}"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="4" Orientation="Horizontal">
+                            <TextBlock Text="СНИЛС: "/>
+                            <TextBlock Text="{Binding snils}"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="5" Orientation="Horizontal">
+                            <TextBlock Text="Номер телефона: "/>
+                            <TextBlock Text="{Binding phone}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="5" Grid.Row="1" Orientation="Horizontal">
+                            <TextBlock Text="Эл. почта: "/>
+                            <TextBlock Text="{Binding email}"/>
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

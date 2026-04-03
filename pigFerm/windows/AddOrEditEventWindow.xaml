@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pigFerm.windows"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="AddOrEditEventWindow" Height="450" Width="800">
     <Grid>
@@ -24,10 +25,11 @@
             <ComboBox Name="eventtypeCB" Grid.Row="1" Grid.Column="1" DisplayMemberPath="nameEvent"/>
 
             <TextBlock Text="Введите дату и время:" Grid.Row="2"/>
-            <TextBox Name="nameTB" Grid.Row="2" Grid.Column="1"/>
+            <xctk:DateTimePicker Name="dateTimePicker" Format="Custom"
+                FormatString="dd.MM.yyyy HH:mm" Grid.Row="2" Grid.Column="1"/>
 
             <TextBlock Text="Введите описание:" Grid.Row="3"/>
-            <TextBox Name="salaryTB" Grid.Row="3" Grid.Column="1"/>
+            <TextBox Name="descriptionTB" Grid.Row="3" Grid.Column="1"/>
 
             <Button Name="saveBtn" Content="Сохранить" Click="saveBtn_Click" Grid.Row="4" Grid.Column="1"/>
 

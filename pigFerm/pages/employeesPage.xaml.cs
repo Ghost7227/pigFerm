@@ -35,14 +35,8 @@ namespace pigFerm.pages
         private void addNewEmployeeBtn_Click(object sender, RoutedEventArgs e)
         {
             createOrEditEmployeeWindow createOrEditEmployeeWindow = new createOrEditEmployeeWindow();
-            if(createOrEditEmployeeWindow.ShowDialog() == true)
-            {
-                if(createOrEditEmployeeWindow.DialogResult == true)
-                {
-                    MessageBox.Show("Сотрудник добавлен");
-                    loadData();
-                }
-            }
+            createOrEditEmployeeWindow.ShowDialog();
+            loadData();
         }
     }
 }

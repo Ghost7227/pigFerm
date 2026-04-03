@@ -26,184 +26,168 @@ namespace pigFerm.windows
         SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(100, 255, 75, 88));
         SolidColorBrush borderBrush = new SolidColorBrush(Color.FromArgb(100, 255, 0, 0));
 
-        bool isCorrectLastName = false;
-        bool isCorrectFirstName = false;
-        bool isCorrectMidleName = false;
-        bool isCorrectBirthday = false;
-        bool isCorrectgender = false;
 
+        bool existMidlename = true;
 
-        string gender;
         public createOrEditEmployeeWindow()
         {
             InitializeComponent();
-        }
-
-        void CheckDataEmployee()
-        {
-            int trueCount = 0;
-            if(isCorrectLastName == true) trueCount++;
-            if(isCorrectFirstName == true) trueCount++;
-            if (isCorrectMidleName == true) trueCount++;
-            if (isCorrectBirthday == true) trueCount++;
-            if (isCorrectgender == true) trueCount++;
-            if (pasportTB.Text.Length == 10) trueCount++;
-            if (innTB.Text.Length == 12) trueCount++;
-            if (snilsTB.Text.Length == 11) trueCount++;
-            if (emailRegex.IsMatch(emailTB.Text)) trueCount++;
-            if (phoneTB.Text.Length == 11) trueCount++;
-
-            MessageBox.Show(trueCount.ToString());
-
-            if(trueCount == 10)
-            {
-                saveBtn.IsEnabled = true;
-            }
-            else
-            {
-                saveBtn.IsEnabled = false;
-            }
+            postCB.ItemsSource = App.db.posts.ToList();
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            employee employee = new employee();
-            employee.firstName = firstNameTB.Text;
-            employee.midleName = midleNameTB.Text;
-            employee.lastName = lastNameTB.Text;
-            employee.pasport = pasportTB.Text;
-            employee.snils = snilsTB.Text;
-            employee.phone = phoneTB.Text;
-            employee.email = emailTB.Text;
-            employee.inn = innTB.Text;
-
-            if (wGenderRB.IsChecked != true && mGenderRB.IsChecked != true)
+            string lastName = "";
+            if (!string.IsNullOrWhiteSpace(lastNameTB.Text))
             {
-                MessageBox.Show("Выберите пол!");
-                return;
+                lastNameTB.Background = null;
+                lastName = lastNameTB.Text.Trim();
             }
+            else lastNameTB.Background = brush;
 
-            if (wGenderRB.IsChecked == true) employee.gender = "Ж";
-            if (mGenderRB.IsChecked == true) employee.gender = "М";
-            /*
-            employee.birthday =(System.DateTime) bdDatePicker.SelectedDate;
-
-            App.db.employees.Add(employee);
-            App.db.SaveChanges();
-            DialogResult = true;
-            Close();*/
-        }
-
-
-        private void midleNameTB_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (regex.IsMatch(midleNameTB.Text))
+            string firstname = "";
+            if (!string.IsNullOrWhiteSpace(firstNameTB.Text))
             {
-                midleNameTB.Background = brush;
-                isCorrectMidleName = false;
+                firstNameTB.Background = null;
+                firstname = firstNameTB.Text.Trim();
             }
-            else if(midleNameTB.Text != string.Empty)
+            else firstNameTB.Background = brush;
+
+            string midlename = "";
+            if (!string.IsNullOrWhiteSpace(midleNameTB.Text) && existMidlename == true)
             {
                 midleNameTB.Background = null;
-                isCorrectMidleName = true;
-                CheckDataEmployee();
+                midlename = midleNameTB.Text.Trim();
             }
+            else if (existMidlename == false) midleNameTB.Background = null;
+            else midleNameTB.Background = brush;
+
+            DateTime today = DateTime.Today;
+            DateTime birthDate = today.AddYears(100);
+            if (bdDatePicker.SelectedDate != null)
+            {
+                birthDate = (DateTime)bdDatePicker.SelectedDate;
+                today = DateTime.Today;
+                int age = today.Year - birthDate.Year;
+                bdDatePicker.Background = null;
+
+                // Если день рождения еще не наступил в этом году, вычитаем год
+                if (birthDate > today.AddYears(-age)) age--;
+
+                if (age < 18) bdDatePicker.Background = brush;
+                else bdDatePicker.Background = null;
+            }
+            else bdDatePicker.Background = brush;
+
+            string gender = "";
+            if (wGenderRB.IsChecked == true) gender = "Ж";
+            else if (mGenderRB.IsChecked == true) gender = "М";
+            else MessageBox.Show("Выберите пол!");
+
+            string passport = "";
+            if (!string.IsNullOrWhiteSpace(pasportTB.Text) && pasportTB.Text.Length == 10)
+            {
+                passport = pasportTB.Text;
+                pasportTB.Background = null;
+            }
+            else pasportTB.Background = brush;
+
+            string snils = "";
+            if (!string.IsNullOrWhiteSpace(pasportTB.Text) && snilsTB.Text.Length == 11)
+            {
+                snils = snilsTB.Text;
+                snilsTB.Background = null;
+            }
+            else snilsTB.Background = brush;
+
+            string inn = "";
+            if (!string.IsNullOrWhiteSpace(pasportTB.Text) && innTB.Text.Length == 12)
+            {
+                inn = innTB.Text;
+                innTB.Background = null;
+            }
+            else innTB.Background = brush;
+
+            string email = "";
+            if (emailRegex.IsMatch(emailTB.Text))
+            {
+                email = emailTB.Text.Trim();
+                emailTB.Background = null;
+            }
+            else if(emailTB.Text == string.Empty) emailTB.Background = null;
+            else emailTB.Background = brush;
+
+            string phone = "";
+            if (!string.IsNullOrWhiteSpace(phoneTB.Text) && phoneTB.Text.Length == 11 && phoneTB.Text.StartsWith("8"))
+            {
+                phone = phoneTB.Text;
+                phoneTB.Background = null;
+            }
+            else phoneTB.Background = brush;
+
+            post post = null;
+            if(postCB.SelectedItem != null)
+            {
+                post = postCB.SelectedItem as post;
+                postCB.Background = null;
+            }
+            else postCB.Background = brush;
+
+            if (lastName != "" && firstname != "" && (midlename != "" || existMidlename == false) && birthDate != today.AddYears(100) && gender != "" &&
+                passport != "" && snils != "" && inn != "" && phone != "" && post != null)
+            {
+                try
+                {
+                    employee employee = new employee();
+                    employee.firstName = firstname;
+                    employee.midleName = midlename;
+                    employee.lastName = lastName;
+                    employee.gender = gender;
+                    employee.pasport = passport;
+                    employee.snils = snils;
+                    employee.phone = phone;
+                    employee.email = email;
+                    employee.inn = inn;
+                    employee.birthday = birthDate;
+                    employee.post = post;
+
+                    App.db.employees.Add(employee);
+                    App.db.SaveChanges();
+                    MessageBox.Show($"Сотрудник {lastName} {midlename} {firstname} успешно добавлен!");
+                    Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ошибка!");
+                }
+            }
+            else MessageBox.Show("Исправьте ошибки!");
         }
+
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             midleNameTB.Text = string.Empty;
             midleNameTB.IsEnabled = false;
-            isCorrectMidleName = true;
-            CheckDataEmployee();
+            existMidlename = false;
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             midleNameTB.IsEnabled = true;
-            isCorrectMidleName = false;
-            CheckDataEmployee();
+            existMidlename = true;
         }
 
-        private void bdDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void digit_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (bdDatePicker.SelectedDate != null)
-            {
-                DateTime birthDate = (DateTime)bdDatePicker.SelectedDate;
-                DateTime today = DateTime.Today;
-                int age = today.Year - birthDate.Year;
-
-                // Если день рождения еще не наступил в этом году, вычитаем год
-                if (birthDate > today.AddYears(-age))
-                    age--;
-                if (age < 18)
-                {
-                    bdDatePicker.Background = brush;
-                    isCorrectBirthday = false;
-                }
-                else
-                {
-                    bdDatePicker.Background = null;
-                    isCorrectBirthday = false;
-                }
-            }
-            CheckDataEmployee();
+            e.Handled = !e.Text.All(char.IsDigit);
         }
 
-        private void mGenderRB_Checked(object sender, RoutedEventArgs e)
+        private void digit_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            gender = "М";
-            isCorrectgender = true;
-            CheckDataEmployee();
-        }
-
-        private void wGenderRB_Checked(object sender, RoutedEventArgs e)
-        {
-            gender = "Ж";
-            isCorrectgender = true;
-            CheckDataEmployee();
-        }
-
-        private void pasportTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if(!Char.IsDigit(e.Text, 0))
+            if(e.Key == Key.Space)
             {
                 e.Handled = true;
-            }
-        }
-
-        private void TB_LostFocus(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void lastNameTB_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (regex.IsMatch(lastNameTB.Text))
-            {
-                lastNameTB.Background = brush;
-                isCorrectLastName = false;
-            }
-            else if (lastNameTB.Text != string.Empty)
-            {
-                lastNameTB.Background = null;
-                isCorrectLastName = true;
-                CheckDataEmployee();
-            }
-        }
-
-        private void firstNameTB_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (regex.IsMatch(firstNameTB.Text))
-            {
-                firstNameTB.Background = brush;
-                isCorrectFirstName = false;
-            }
-            else if (firstNameTB.Text != string.Empty)
-            {
-                firstNameTB.Background = null;
-                isCorrectFirstName = true;
-                CheckDataEmployee();
             }
         }
     }
