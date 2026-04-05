@@ -28,8 +28,8 @@ namespace pigFerm.database
         public string gender { get; set; }
         public System.DateTime birth_date { get; set; }
         public Nullable<int> breed { get; set; }
-        public Nullable<System.DateTime> arrival_date { get; set; }
         public string origin { get; set; }
+        public Nullable<System.DateTime> arrival_date { get; set; }
         public Nullable<int> mother_id { get; set; }
         public Nullable<int> father_id { get; set; }
         public Nullable<int> group_id { get; set; }

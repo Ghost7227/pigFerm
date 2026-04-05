@@ -51,5 +51,10 @@ namespace pigFerm
         {
             mainFrame.Navigate(new EventPage());
         }
+
+        private void animalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate (new AnimalPage());
+        }
     }
 }

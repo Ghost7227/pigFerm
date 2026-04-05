@@ -49,7 +49,7 @@ namespace pigFerm.windows
             if (dateTimePicker.Value.HasValue)
             {
                 dateTime = dateTimePicker.Value.Value;
-                if(dateTime < DateTime.Now) MessageBox.Show("Дата и время не могут быть больше текущих");
+                if(dateTime > DateTime.Now) MessageBox.Show("Дата и время не могут быть больше текущих");
             }
             else MessageBox.Show("Укажите время события!");
 
@@ -58,7 +58,7 @@ namespace pigFerm.windows
                 database.@event eve = new @event();
                 eve.EventType = eventType;
                 eve.dateTime = dateTime;
-                if (string.IsNullOrWhiteSpace(descriptionTB.Text))
+                if (!string.IsNullOrWhiteSpace(descriptionTB.Text))
                 {
                     eve.descriiption = descriptionTB.Text;
                 }
@@ -67,7 +67,8 @@ namespace pigFerm.windows
                 {
                     App.db.events.Add(eve);
                     App.db.SaveChanges();
-                    MessageBox.Show($"Событие {eve.EventType} {eve.dateTime} успешно сохранено");
+                    MessageBox.Show($"Событие {eve.EventType.nameEvent} {eve.dateTime} успешно сохранено");
+                    Close();
                 }
                 catch (Exception)
                 {

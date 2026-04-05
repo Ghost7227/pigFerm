@@ -39,7 +39,7 @@
 
                                     <StackPanel Grid.Column="2">
                                         <TextBlock Text="Тип: "/>
-                                        <TextBlock Text="{Binding EventType}"/>
+                                        <TextBlock Text="{Binding EventType.nameEvent}"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="3">

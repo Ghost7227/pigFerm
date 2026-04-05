@@ -1,0 +1,71 @@
+﻿<Window x:Class="pigFerm.windows.AddOrEditAnimalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pigFerm.windows"
+        mc:Ignorable="d"
+        Title="AddOrEditAnimalWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Порода:" TextWrapping="Wrap"/>
+        <ComboBox Name="breedCB" DisplayMemberPath="nameBreed" Grid.Column="1" Grid.Row="0"/>
+
+        <TextBlock Grid.Row="1" Text="ID ушной бирки:"/>
+        <TextBox Name="ear_tagTB" Grid.Row="1" Grid.Column="1"/>
+
+        <TextBlock Grid.Row="2" Text="Имя:"/>
+        <TextBox Name="nameTB" Grid.Column="1" Grid.Row="2"/>
+
+        <TextBlock Grid.Row="3" Text="Дата рождения:" TextWrapping="Wrap"/>
+        <DatePicker Grid.Column="1" Grid.Row="3" SelectedDateFormat="Long" Name="bdDatePicker"/>
+
+        <TextBlock Grid.Row="4" Text="Пол:"/>
+        <StackPanel Grid.Column="1" Grid.Row="4">
+            <RadioButton Content="Свинья" Name="wGenderRB"/>
+            <RadioButton Content="Хряк" Name="mGenderRB"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="5" Text="Группа:" TextWrapping="Wrap"/>
+        <ComboBox Name="groupCB" DisplayMemberPath="id" Grid.Column="1" Grid.Row="5"/>
+
+        <TextBlock Grid.Row="6" Text="Происхождение:"/>
+        <StackPanel Grid.Column="1" Grid.Row="6" Orientation="Horizontal">
+            <RadioButton Content="Собственный" Name="sRB" Margin="0 0 10 0" IsChecked="True"/>
+            <RadioButton Content="Закуп" Name="buyRB"/>
+        </StackPanel>
+        
+        
+
+        <!--<TextBlock Grid.Row="5" Text="Отчество:"/>
+        <StackPanel Grid.Column="1" Grid.Row="5">
+            <TextBox Name="midleNameTB"/>
+            <CheckBox Content="Отчество отсутствует" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        </StackPanel>-->
+
+        
+
+       
+        
+        
+        <Button Content="Сохранить" HorizontalAlignment="Right" Name="saveBtn" Click="SaveBtn_Click" Grid.Column="1" Grid.Row="11"/>
+    </Grid>
+</Window>

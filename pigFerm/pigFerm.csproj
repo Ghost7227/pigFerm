@@ -148,6 +148,9 @@
     <Compile Include="database\shipment.cs">
       <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="pages\AnimalPage.xaml.cs">
+      <DependentUpon>AnimalPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\CounterpartiesPage.xaml.cs">
       <DependentUpon>CounterpartiesPage.xaml</DependentUpon>
     </Compile>
@@ -163,14 +166,23 @@
     <Compile Include="pages\RoomsPage.xaml.cs">
       <DependentUpon>RoomsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\AddNewBreedWindow.xaml.cs">
+      <DependentUpon>AddNewBreedWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\AddNewDepartamentWindow.xaml.cs">
       <DependentUpon>AddNewDepartamentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\AddNewGroupTypeWindow.xaml.cs">
+      <DependentUpon>AddNewGroupTypeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\AddNewPostWindow.xaml.cs">
       <DependentUpon>AddNewPostWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\AddNewRoomAndRoomTypeWindow.xaml.cs">
       <DependentUpon>AddNewRoomAndRoomTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\AddOrEditAnimalWindow.xaml.cs">
+      <DependentUpon>AddOrEditAnimalWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\AddOrEditCounterpartyWindow.xaml.cs">
       <DependentUpon>AddOrEditCounterpartyWindow.xaml</DependentUpon>
@@ -196,6 +208,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="pages\AnimalPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\CounterpartiesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,7 +232,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="windows\AddNewBreedWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\AddNewDepartamentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddNewGroupTypeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\AddNewRoomAndRoomTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddOrEditAnimalWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
