@@ -12,13 +12,18 @@
         <TabControl>
             <TabItem Header="Животные">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="88*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="699*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Button Name="addNewAnimalBtn" Click="addNewAnimalBtn_Click" Content="Добавить животное"/>
-                    <ListView Name="animalLV" Grid.Row="1">
+                    <Button Name="addNewAnimalBtn" Click="addNewAnimalBtn_Click" Content="Добавить животное" Grid.ColumnSpan="3"/>
+                    <ListView Name="animalLV" Grid.Row="1" Grid.ColumnSpan="3">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -49,9 +54,15 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
                                         <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Text="{Binding id}"/>
+                                    <TextBlock Text="{Binding groupType.nameGroup}" Grid.Column="1"/>
+                                    <TextBlock Text="{Binding room.performanceRoom}" Grid.Column="2"/>
+                                    <TextBlock Text="{Binding employee.fio}" Grid.Column="3"/>
+
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

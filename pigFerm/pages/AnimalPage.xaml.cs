@@ -31,6 +31,8 @@ namespace pigFerm.pages
         {
             breedLV.ItemsSource = App.db.breeds.ToList();
             typeGroupLV.ItemsSource = App.db.groupTypes.ToList();
+            groupLV.ItemsSource = App.db.AnimalGroups.ToList();
+            animalLV.ItemsSource = App.db.Animals.ToList();
         }
 
         private void AddNewBreedBtn_Click(object sender, RoutedEventArgs e)
@@ -51,7 +53,10 @@ namespace pigFerm.pages
 
         private void addNewGroupBtn_Click(object sender, RoutedEventArgs e)
         {
+            AddOrEditAnimalGroupWindow addOrEditAnimalGroupWindow = new AddOrEditAnimalGroupWindow();
+            addOrEditAnimalGroupWindow.ShowDialog();
 
+            LoadData();
         }
 
         private void addNewAnimalBtn_Click(object sender, RoutedEventArgs e)

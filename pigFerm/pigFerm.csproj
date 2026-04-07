@@ -100,6 +100,7 @@
     <Compile Include="database\employee.cs">
       <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="database\employeePartial.cs" />
     <Compile Include="database\event.cs">
       <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
@@ -166,6 +167,7 @@
     <Compile Include="pages\RoomsPage.xaml.cs">
       <DependentUpon>RoomsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="database\roomPartial.cs" />
     <Compile Include="windows\AddNewBreedWindow.xaml.cs">
       <DependentUpon>AddNewBreedWindow.xaml</DependentUpon>
     </Compile>
@@ -180,6 +182,9 @@
     </Compile>
     <Compile Include="windows\AddNewRoomAndRoomTypeWindow.xaml.cs">
       <DependentUpon>AddNewRoomAndRoomTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\AddOrEditAnimalGroupWindow.xaml.cs">
+      <DependentUpon>AddOrEditAnimalGroupWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\AddOrEditAnimalWindow.xaml.cs">
       <DependentUpon>AddOrEditAnimalWindow.xaml</DependentUpon>
@@ -252,6 +257,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="windows\AddOrEditAnimalGroupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\AddOrEditAnimalWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -321,6 +330,9 @@
       <DependentUpon>fermModel.edmx</DependentUpon>
       <LastGenOutput>fermModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="partialClasses\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

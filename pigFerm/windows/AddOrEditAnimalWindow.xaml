@@ -27,7 +27,21 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="Порода:" TextWrapping="Wrap"/>
-        <ComboBox Name="breedCB" DisplayMemberPath="nameBreed" Grid.Column="1" Grid.Row="0"/>
+        <ComboBox Name="breedCB" Grid.Column="1" Grid.Row="0">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding id}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding nameBreed}"/>
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <TextBlock Grid.Row="1" Text="ID ушной бирки:"/>
         <TextBox Name="ear_tagTB" Grid.Row="1" Grid.Column="1"/>
@@ -47,14 +61,57 @@
         <TextBlock Grid.Row="5" Text="Группа:" TextWrapping="Wrap"/>
         <ComboBox Name="groupCB" DisplayMemberPath="id" Grid.Column="1" Grid.Row="5"/>
 
+        <TextBlock Grid.Row="7" Text="Мать:" TextWrapping="Wrap" Name="motherTBlock"/>
+        <ComboBox Name="motherCB" Grid.Column="1" Grid.Row="7">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding id}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding ear_tag}"/>
+                        <TextBlock Grid.Column="2" Text="{Binding name}"/>
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock Grid.Row="8" Text="Отец:" TextWrapping="Wrap" Name="fatherTBlock"/>
+        <ComboBox Name="fatherCB" Grid.Column="1" Grid.Row="8">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding id}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding ear_tag}"/>
+                        <TextBlock Grid.Column="2" Text="{Binding name}"/>
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock Grid.Row="7" Text="Происхождение:" TextWrapping="Wrap" Name="originTBlock" Visibility="Collapsed"/>
+        <TextBox Name="originTB" Grid.Column="1" Grid.Row="7" Visibility="Collapsed"/>
+
+        <TextBlock Grid.Row="8" Text="Дата прибытия:" TextWrapping="Wrap" Name="arrivaTBlock" Visibility="Collapsed"/>
+        <DatePicker Grid.Column="1" Grid.Row="8" SelectedDateFormat="Long" Name="arrivalDateDatePicker" Visibility="Collapsed"/>
+
         <TextBlock Grid.Row="6" Text="Происхождение:"/>
         <StackPanel Grid.Column="1" Grid.Row="6" Orientation="Horizontal">
-            <RadioButton Content="Собственный" Name="sRB" Margin="0 0 10 0" IsChecked="True"/>
-            <RadioButton Content="Закуп" Name="buyRB"/>
+            <RadioButton Content="Собственный" Name="sRB" Margin="0 0 10 0" IsChecked="True" Checked="sRB_Checked"/>
+            <RadioButton Content="Закуп" Name="buyRB" Checked="buyRB_Checked"/>
         </StackPanel>
-        
-        
 
+        
         <!--<TextBlock Grid.Row="5" Text="Отчество:"/>
         <StackPanel Grid.Column="1" Grid.Row="5">
             <TextBox Name="midleNameTB"/>
