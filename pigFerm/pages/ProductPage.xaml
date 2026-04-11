@@ -1,0 +1,93 @@
+﻿<Page x:Class="pigFerm.pages.ProductPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:pigFerm.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProductPage">
+
+    <Grid>
+        <TabControl>
+            <TabItem Header="Продукция">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Name="addNewProductBtn" Click="addNewProductBtn_Click" Content="Добавить вид продукцию"/>
+
+                    <ListView Name="productLV" Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding id}" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding productType.nameTypeProduct}" Grid.Column="1"/>
+                                    <TextBlock Text="{Binding quantityUnit}" Grid.Column="2"/>
+
+                                    <StackPanel Grid.Column="3">
+                                        <TextBlock Text="Произведен: "/>
+                                        <TextBlock Text="{Binding prodauctionDate}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="4">
+                                        <TextBlock Text="Годен до: "/>
+                                        <TextBlock Text="{Binding expirationDate}"/>
+                                    </StackPanel>
+
+                                    <TextBlock Text="{Binding costUnit}" Grid.Column="5"/>
+
+                                    <TextBlock Text="{Binding eventNameAndDate}" Grid.Column="6"/>
+                                    <TextBlock Text="{Binding descriiption}" Grid.Column="7"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Виды продукции">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Name="addNewProductTypeBtn" Click="addNewProductTypeBtn_Click" Content="Добавить вид продукции"/>
+
+                    <ListView Name="ProductTypeLV" Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding id}" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding nameTypeProduct}" Grid.Column="1"/>
+                                    <TextBlock Text="{Binding unit}" Grid.Column="2"/>
+                                    <TextBlock Text="{Binding cost}" Grid.Column="3"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

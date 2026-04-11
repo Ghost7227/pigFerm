@@ -19,6 +19,7 @@
             <Button Content="Контрагенты" Name="counterpartyBtn" Click="counterpartyBtn_Click"/>
             <Button Content="События" Name="eventBtn" Click="eventBtn_Click"/>
             <Button Content="Животные" Name="animalBtn" Click="animalBtn_Click"/>
+            <Button Content="Продукция" Name="productBtn" Click="productBtn_Click"/>
         </StackPanel>
 
         <Frame Name="mainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>

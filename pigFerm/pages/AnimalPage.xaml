@@ -12,11 +12,6 @@
         <TabControl>
             <TabItem Header="Животные">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="88*"/>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition Width="699*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition/>
@@ -30,9 +25,32 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
                                         <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Text="{Binding id}"/>
+                                    
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock Text="{Binding ear_tag}"/>
+                                        <TextBlock Text="{Binding name}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2">
+                                        <TextBlock Text="{Binding gender}"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Дата рождения:"/>
+                                            <TextBlock Text="{Binding birth_date}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <TextBlock Grid.Column="3" Text="{Binding breed1.nameBreed}"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding origin}"/> 
+                                    <TextBlock Grid.Column="5" Text="{Binding AnimalGroup.id}"/>
+                                    <TextBlock Grid.Column="6" Text="{Binding status}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

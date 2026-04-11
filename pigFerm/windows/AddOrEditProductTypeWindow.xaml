@@ -1,0 +1,35 @@
+﻿<Window x:Class="pigFerm.windows.AddOrEditProductTypeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pigFerm.windows"
+        mc:Ignorable="d"
+        Title="AddOrEditProductTypeWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>            
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Заполните данные:"/>
+
+        <TextBlock Text="Название вида продукции:" Grid.Row="1"/>
+        <TextBox Name="nameTB" Grid.Row="1" Grid.Column="1"/>
+
+        <TextBlock Text="Единица измерения:" Grid.Row="2"/>
+        <TextBox Name="unitTB" Grid.Row="2" Grid.Column="1"/>
+
+        <TextBlock Text="Стоимость за единицу:" Grid.Row="3"/>
+        <TextBox Name="costTB" Grid.Row="3" Grid.Column="1"/>
+
+        <Button Name="saveBtn" Click="saveBtn_Click" Content="Сохранить" Grid.Row="4" Grid.Column="1"/>
+    </Grid>
+</Window>
