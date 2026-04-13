@@ -18,18 +18,18 @@
                     </Grid.RowDefinitions>
 
                     <Button Name="addNewAnimalBtn" Click="addNewAnimalBtn_Click" Content="Добавить животное" Grid.ColumnSpan="3"/>
-                    <ListView Name="animalLV" Grid.Row="1" Grid.ColumnSpan="3">
+                    <ListView Name="animalLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition SharedSizeGroup="idCol"/>
+                                        <ColumnDefinition SharedSizeGroup="Col1"/>
+                                        <ColumnDefinition SharedSizeGroup="Col2"/>
+                                        <ColumnDefinition SharedSizeGroup="Col3"/>
+                                        <ColumnDefinition SharedSizeGroup="Col4"/>
+                                        <ColumnDefinition SharedSizeGroup="Col5"/>
+                                        <ColumnDefinition SharedSizeGroup="Col6"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Text="{Binding id}"/>
@@ -65,15 +65,15 @@
                     </Grid.RowDefinitions>
 
                     <Button Name="addNewGroupBtn" Click="addNewGroupBtn_Click" Content="Добавить группу"/>
-                    <ListView Name="groupLV" Grid.Row="1">
+                    <ListView Name="groupLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition SharedSizeGroup="Col"/>
+                                        <ColumnDefinition SharedSizeGroup="Col1"/>
+                                        <ColumnDefinition SharedSizeGroup="Col2"/>
+                                        <ColumnDefinition SharedSizeGroup="Col3"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Text="{Binding id}"/>
@@ -95,13 +95,13 @@
                     </Grid.RowDefinitions>
 
                     <Button Name="addNewTypeGroupBtn" Click="addNewTypeGroupBtn_Click" Content="Добавить тип групп"/>
-                    <ListView Name="typeGroupLV" Grid.Row="1">
+                    <ListView Name="typeGroupLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition SharedSizeGroup="Col"/>
+                                        <ColumnDefinition SharedSizeGroup="Col1"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Text="{Binding id}"/>
@@ -120,13 +120,13 @@
                     </Grid.RowDefinitions>
                     <Button Name="AddNewBreedBtn" Click="AddNewBreedBtn_Click" Content="Добавить породу"/>
 
-                    <ListView Name="breedLV" Grid.Row="1">
+                    <ListView Name="breedLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition SharedSizeGroup="Col"/>
+                                        <ColumnDefinition SharedSizeGroup="Col1"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Text="{Binding id}"/>

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace pigFerm.windows
 {
@@ -30,21 +31,6 @@ namespace pigFerm.windows
         {
             typeProductCB.ItemsSource = App.db.productTypes.ToList();
             eventCB.ItemsSource = App.db.events.ToList();
-        }
-
-        product SeekProduct(product product)
-        {
-            int idProdType = product.idType;
-            int idEvent = product.idEvent;
-            product existProduct = App.db.products.FirstOrDefault(pr => pr.idType == idProdType && pr.idEvent == idEvent);
-            
-            if(existProduct != null) 
-            {
-                MessageBox.Show("Найдено совпадение типа продукции по дате и событию!", "применить изменения?", MessageBoxButton.YesNoCancel);
-                return existProduct;
-            }
-                    
-            else return null;
         }
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
@@ -82,41 +68,71 @@ namespace pigFerm.windows
             {
                 if (prodDate < expDate)
                 {
-                    try
-                    {
-                        product product = new product();
-                        product.quantity = quantity;
-                        product.descriiption = notes;
-                        product.prodauctionDate = prodDate;
-                        product.expirationDate = expDate;
-                        product.@event = @event;
-                        product.productType = productType;
+                    product product = new product();
+                    product.quantity = quantity;
+                    product.descriiption = notes;
+                    product.prodauctionDate = prodDate;
+                    product.expirationDate = expDate;
+                    product.idEvent = @event.id;
+                    product.idType = productType.id;
 
-                        if (SeekProduct(product) != null)
-                        {
-                            product existProduct = SeekProduct(product);
-                            existProduct.quantity += quantity;
-
-                            App.db.SaveChanges();
-                            MessageBox.Show("Успешно изменено");
-                        }
-                        else
-                        {
-                            App.db.products.Add(product);
-                            App.db.SaveChanges();
-
-                            MessageBox.Show("Успешно добавлено");
-                        }
-                        Close();
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Ошибка при сохранении!");
-                    }
+                    SaveProduct(product, quantity);
                 }
                 else MessageBox.Show("Дата окончания срока годности не может быть меньше даты производства!");
             }
             else MessageBox.Show("Исправьте ошибки!");
+        }
+
+        private void SaveProduct(product product, int quantity)
+        {
+            try
+            {
+                product existProduct = SeekProduct(product, quantity);
+                if(existProduct != null)
+                {
+                    if (existProduct.idType == product.idType && existProduct.idEvent == product.idEvent && existProduct.quantity == product.quantity)
+                    {
+                        MessageBox.Show("Продукт с такими характеристиками(Событие, Тип продукции) уже существует! Дублирование недопустимо.");
+                        return;
+                    }
+                    else if (existProduct.idType == product.idType && existProduct.idEvent == product.idEvent && existProduct.quantity != product.quantity)
+                    {
+                        App.db.SaveChanges();
+                        MessageBox.Show("Успешно изменено");
+                        Close();
+                    }
+                }
+                else
+                {
+                    App.db.products.Add(product);
+                    App.db.SaveChanges();
+
+                    MessageBox.Show("Успешно добавлено");
+                    Close();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка при сохранении!");
+            }
+        }
+
+        //проверка существования такого продукта полученного после указанного события
+        product SeekProduct(product product, int quantity)
+        {
+            int idProdType = product.idType;
+            int idEvent = product.idEvent;
+            product existProduct = App.db.products.FirstOrDefault(pr => pr.idType == idProdType && pr.idEvent == idEvent);
+
+            if (existProduct != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Найдено совпадение типа продукции по дате и событию!", "применить изменения?", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes) existProduct.quantity += quantity;
+
+                return existProduct;
+            }
+
+            else return null;
         }
     }
 }
