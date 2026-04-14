@@ -31,6 +31,7 @@ namespace pigFerm.pages
         {
             ProductTypeLV.ItemsSource = App.db.productTypes.ToList();
             productLV.ItemsSource = App.db.products.ToList();
+            reservProductLV.ItemsSource = App.db.products.Where(pr => pr.quantity > 0).ToList().OrderBy(pr => pr.expirationDate);
         }
 
         private void addNewProductTypeBtn_Click(object sender, RoutedEventArgs e)

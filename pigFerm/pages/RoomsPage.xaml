@@ -10,33 +10,30 @@
     <TabControl>
         <TabItem Header="Помещения">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="29*"/>
-                    <ColumnDefinition Width="368*"/>
-                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <ListView Name="roomsLV" Grid.Row="1" Grid.ColumnSpan="2">
+                <ListView Name="roomsLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="5*"/>
-                                    <ColumnDefinition Width="5*"/>
-                                    <ColumnDefinition Width="10*"/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition SharedSizeGroup="col"/>
+                                    <ColumnDefinition SharedSizeGroup="col1"/>
+                                    <ColumnDefinition SharedSizeGroup="col2"/>
+                                    <ColumnDefinition SharedSizeGroup="col3"/>
+                                    <ColumnDefinition SharedSizeGroup="col4"/>
                                 </Grid.ColumnDefinitions>
+                                
                                 <TextBlock Text="{Binding id}"/>
 
-                                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                <StackPanel Grid.Column="1">
                                     <TextBlock Text="Тип: "/>
                                     <TextBlock Text="{Binding roomType.nameRoomTtpes}"/>
                                 </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Grid.Column="2">
+                                <StackPanel Grid.Column="2">
                                     <TextBlock Text="Адрес: "/>
                                     <TextBlock Text="{Binding adres}"/>
                                 </StackPanel>
@@ -53,8 +50,11 @@
                                     </StackPanel>
                                 </StackPanel>
 
-                                <TextBlock Text="{Binding locationNotes}" Grid.Column="3"/>
-                                
+                                <StackPanel Grid.Column="4">
+                                    <TextBlock Text="Заметки: "/>
+                                    <TextBlock Text="{Binding locationNotes}" TextWrapping="WrapWithOverflow"/>
+                                </StackPanel>
+
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -64,24 +64,19 @@
         </TabItem>
         <TabItem Header="Типы помещений">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="43*"/>
-                    <ColumnDefinition Width="11*"/>
-                    <ColumnDefinition Width="18*"/>
-                    <ColumnDefinition Width="722*"/>
-                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <ListView Name="roomTypesLV" Grid.Row="1" Grid.ColumnSpan="4">
+                <ListView Name="roomTypesLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30"/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition SharedSizeGroup="col"/>
+                                    <ColumnDefinition SharedSizeGroup="col1"/>
                                 </Grid.ColumnDefinitions>
+                                
                                 <TextBlock Text="{Binding id}"/>
                                 <TextBlock Text="{Binding nameRoomTtpes}" Grid.Column="1"/>
                             </Grid>

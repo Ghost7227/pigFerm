@@ -17,8 +17,8 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Button Name="addNewAnimalBtn" Click="addNewAnimalBtn_Click" Content="Добавить животное" Grid.ColumnSpan="3"/>
-                    <ListView Name="animalLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
+                    <Button Name="addNewAnimalBtn" Click="addNewAnimalBtn_Click" Content="Добавить животное" Grid.ColumnSpan="2"/>
+                    <ListView Name="animalLV" Grid.Row="1" Grid.IsSharedSizeScope="True" Grid.ColumnSpan="2">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -33,7 +33,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Text="{Binding id}"/>
-                                    
+
                                     <StackPanel Grid.Column="1">
                                         <TextBlock Text="{Binding ear_tag}"/>
                                         <TextBlock Text="{Binding name}"/>
@@ -48,7 +48,7 @@
                                     </StackPanel>
 
                                     <TextBlock Grid.Column="3" Text="{Binding breed1.nameBreed}"/>
-                                    <TextBlock Grid.Column="4" Text="{Binding origin}"/> 
+                                    <TextBlock Grid.Column="4" Text="{Binding origin}"/>
                                     <TextBlock Grid.Column="5" Text="{Binding AnimalGroup.id}"/>
                                     <TextBlock Grid.Column="6" Text="{Binding status}"/>
                                 </Grid>

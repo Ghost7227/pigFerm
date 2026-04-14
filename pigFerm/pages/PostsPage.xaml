@@ -18,13 +18,20 @@
 
                 <Button Name="addNewDepartamentBtn" Content="Добавить новый отдел" Click="addNewDepartamentBtn_Click"/>
 
-                <ListView Name="DepartamentListView" Grid.Row="1">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=id}"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=nameDepartment}"/>
-                        </GridView>
-                    </ListView.View>
+                <ListView Name="DepartamentListView" Grid.Row="1" Grid.IsSharedSizeScope="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="col"/>
+                                    <ColumnDefinition SharedSizeGroup="col1"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding id}"/>
+                                <TextBlock Text="{Binding nameDepartment}" Grid.Column="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </Grid>
         </TabItem>
@@ -37,14 +44,22 @@
 
                 <Button Name="addNewPostBtn" Click="addNewPostBtn_Click" Content="Добавить должность"/>
 
-                <ListView Name="PostsListView" Grid.Row="1">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=id}"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=namePost}"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=salary}"/>
-                        </GridView>
-                    </ListView.View>
+                <ListView Name="PostsListView" Grid.Row="1" Grid.IsSharedSizeScope="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="col"/>
+                                    <ColumnDefinition SharedSizeGroup="col1"/>
+                                    <ColumnDefinition SharedSizeGroup="col2"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding id}"/>
+                                <TextBlock Text="{Binding namePost}" Grid.Column="1"/>
+                                <TextBlock Text="{Binding salary}" Grid.Column="2"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </Grid>
         </TabItem>
