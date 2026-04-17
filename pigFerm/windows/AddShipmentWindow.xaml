@@ -41,12 +41,28 @@
         <TextBlock Grid.Row="2" Text="Укажите дату:"/>
         <DatePicker Name="dp1" Grid.Row="2" Grid.Column="1"/>
 
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <TextBlock Text="Выберите продукцию:"/>
-            <ListView Name="prodLV" Grid.IsSharedSizeScope="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListView Name="prodLV" Grid.IsSharedSizeScope="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="1">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="MouseDoubleClick" Handler="prodLVItem_MouseDoubleClick"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                <Setter Property="IsSelected" Value="True"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition SharedSizeGroup="idCol"/>
                                 <ColumnDefinition SharedSizeGroup="prodTypeCol"/>
@@ -54,6 +70,7 @@
                                 <ColumnDefinition SharedSizeGroup="dateCol"/>
                                 <ColumnDefinition SharedSizeGroup="dateCol"/>
                                 <ColumnDefinition SharedSizeGroup="costCol"/>
+                                <ColumnDefinition SharedSizeGroup="queryQuantityCol"/>
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Text="{Binding id}" Grid.Column="0"/>
@@ -71,11 +88,56 @@
                             </StackPanel>
 
                             <TextBlock Text="{Binding costUnit}" Grid.Column="5"/>
+
+                            <StackPanel Grid.Column="6">
+                                <TextBlock Text="Необходимое количество: "/>
+                                <TextBox Name="queryQuantityTB" PreviewKeyDown="queryQuantityTB_PreviewKeyDown" PreviewTextInput="queryQuantityTB_PreviewTextInput" TextChanged="queryQuantityTB_TextChanged"  />
+                                <!--="queryQuantityTB_GotFocus"-->
+                            </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackPanel>
+            
+            <TextBlock Text="Выбранная продукция:" Grid.Row="2"/>
+            <ListView Name="selectedProdLV" Grid.IsSharedSizeScope="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="3">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="MouseDoubleClick" Handler="selectedProdLVItem_MouseDoubleClick"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="idCol"/>
+                                <ColumnDefinition SharedSizeGroup="prodTypeCol"/>
+                                <ColumnDefinition SharedSizeGroup="quantityCol"/>
+                                <ColumnDefinition SharedSizeGroup="dateCol"/>
+                                <ColumnDefinition SharedSizeGroup="dateCol"/>
+                                <ColumnDefinition SharedSizeGroup="costCol"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding id}" Grid.Column="0"/>
+                            <TextBlock Text="{Binding productType.nameTypeProduct}" Grid.Column="1"/>
+                            <TextBlock Text="{Binding queryQuantity}" Grid.Column="2"/>
+
+                            <StackPanel Grid.Column="3">
+                                <TextBlock Text="Произведен: "/>
+                                <TextBlock Text="{Binding prodauctionDate, StringFormat='dd.MM.yyyy'}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="4">
+                                <TextBlock Text="Годен до: "/>
+                                <TextBlock Text="{Binding expirationDate, StringFormat='dd.MM.yyyy'}"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding costUnit}" Grid.Column="5"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
 
         <Button Name="saveBtn" Click="saveBtn_Click" Content="Сохранить" Grid.Row="4" Grid.Column="1"/>
     </Grid>
