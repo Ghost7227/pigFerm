@@ -91,7 +91,8 @@
 
                             <StackPanel Grid.Column="6">
                                 <TextBlock Text="Необходимое количество: "/>
-                                <TextBox Name="queryQuantityTB"  PreviewTextInput="queryQuantityTB_PreviewTextInput" TextChanged="queryQuantityTB_TextChanged"/>
+                                <TextBox Name="queryQuantityTB" PreviewKeyDown="queryQuantityTB_PreviewKeyDown" PreviewTextInput="queryQuantityTB_PreviewTextInput" TextChanged="queryQuantityTB_TextChanged"  />
+                                <!--="queryQuantityTB_GotFocus"-->
                             </StackPanel>
                         </Grid>
                     </DataTemplate>

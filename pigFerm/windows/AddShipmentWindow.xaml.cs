@@ -61,6 +61,14 @@ namespace pigFerm.windows
                 }
             }
 
+            if(selectedProducts.Count > 0)
+            {
+                foreach (var product in selectedProducts)
+                {
+                    
+                }
+            }
+
 
             if (counterparty != null && dp1.SelectedDate != null && selectedProducts.Count > 0)
             {

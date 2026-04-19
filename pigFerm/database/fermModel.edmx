@@ -4,8 +4,8 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище fermModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AnimalGroup">
+    <Schema Namespace="fermModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnimalGroups">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -22,9 +22,9 @@
           <Property Name="ear_tag" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="100" />
           <Property Name="gender" Type="nchar" MaxLength="1" Nullable="false" />
-          <Property Name="birth_date" Type="date" Nullable="false" />
+          <Property Name="birth_date" Type="datetime" Nullable="false" />
           <Property Name="breed" Type="int" />
-          <Property Name="arrival_date" Type="date" />
+          <Property Name="arrival_date" Type="datetime" />
           <Property Name="origin" Type="nvarchar" MaxLength="255" />
           <Property Name="mother_id" Type="int" />
           <Property Name="father_id" Type="int" />
@@ -49,7 +49,7 @@
           <Property Name="isRegular" Type="bit" Nullable="false" />
           <Property Name="category" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="department">
+        <EntityType Name="departments">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -65,7 +65,7 @@
           <Property Name="midleName" Type="nvarchar" MaxLength="100" />
           <Property Name="lastName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="gender" Type="char" MaxLength="1" />
-          <Property Name="birthday" Type="date" Nullable="false" />
+          <Property Name="birthday" Type="datetime" Nullable="false" />
           <Property Name="pasport" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="snils" Type="nvarchar" MaxLength="14" Nullable="false" />
           <Property Name="inn" Type="nvarchar" MaxLength="12" Nullable="false" />
@@ -75,13 +75,13 @@
         </EntityType>
         <EntityType Name="EventAnimal">
           <Key>
-            <PropertyRef Name="eventId" />
-            <PropertyRef Name="animalId" />
+            <PropertyRef Name="Animals_id" />
+            <PropertyRef Name="events_id" />
           </Key>
-          <Property Name="eventId" Type="int" Nullable="false" />
-          <Property Name="animalId" Type="int" Nullable="false" />
+          <Property Name="Animals_id" Type="int" Nullable="false" />
+          <Property Name="events_id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="EventEmployee">
+        <EntityType Name="EventEmployees">
           <Key>
             <PropertyRef Name="eventId" />
             <PropertyRef Name="employeeId" />
@@ -119,7 +119,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="namePost" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="salary" Type="money" Nullable="false" />
+          <Property Name="salary" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="idDepartament" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="products">
@@ -134,7 +134,7 @@
           <Property Name="expirationDate" Type="datetime" Nullable="false" />
           <Property Name="idEvent" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="productShipment">
+        <EntityType Name="productShipments">
           <Key>
             <PropertyRef Name="idProduct" />
             <PropertyRef Name="idShipment" />
@@ -150,7 +150,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nameTypeProduct" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="unit" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="cost" Type="money" Nullable="false" />
+          <Property Name="cost" Type="decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
         <EntityType Name="rooms">
           <Key>
@@ -177,45 +177,45 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idCounterapies" Type="int" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
-          <Property Name="sum" Type="money" Nullable="false" />
+          <Property Name="sum" Type="decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
-        <Association Name="FK__AnimalGro__idEmp__5535A963">
+        <Association Name="FK__AnimalGro__idEmp__19DFD96B">
           <End Role="employees" Type="Self.employees" Multiplicity="1" />
-          <End Role="AnimalGroup" Type="Self.AnimalGroup" Multiplicity="*" />
+          <End Role="AnimalGroups" Type="Self.AnimalGroups" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="employees">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="AnimalGroup">
+            <Dependent Role="AnimalGroups">
               <PropertyRef Name="idEmployee" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AnimalGro__idRoo__5441852A">
+        <Association Name="FK__AnimalGro__idRoo__18EBB532">
           <End Role="rooms" Type="Self.rooms" Multiplicity="1" />
-          <End Role="AnimalGroup" Type="Self.AnimalGroup" Multiplicity="*" />
+          <End Role="AnimalGroups" Type="Self.AnimalGroups" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="rooms">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="AnimalGroup">
+            <Dependent Role="AnimalGroups">
               <PropertyRef Name="idRoom" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AnimalGro__idTyp__534D60F1">
+        <Association Name="FK__AnimalGro__idTyp__17F790F9">
           <End Role="groupTypes" Type="Self.groupTypes" Multiplicity="1" />
-          <End Role="AnimalGroup" Type="Self.AnimalGroup" Multiplicity="*" />
+          <End Role="AnimalGroups" Type="Self.AnimalGroups" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="groupTypes">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="AnimalGroup">
+            <Dependent Role="AnimalGroups">
               <PropertyRef Name="idType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Animals__breed__5AEE82B9">
+        <Association Name="FK__Animals__breed__1F98B2C1">
           <End Role="breeds" Type="Self.breeds" Multiplicity="0..1" />
           <End Role="Animals" Type="Self.Animals" Multiplicity="*" />
           <ReferentialConstraint>
@@ -227,7 +227,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Animals__father___5CD6CB2B">
+        <Association Name="FK__Animals__father___2180FB33">
           <End Role="Animals" Type="Self.Animals" Multiplicity="0..1" />
           <End Role="Animals1" Type="Self.Animals" Multiplicity="*" />
           <ReferentialConstraint>
@@ -239,11 +239,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Animals__group_i__5DCAEF64">
-          <End Role="AnimalGroup" Type="Self.AnimalGroup" Multiplicity="0..1" />
+        <Association Name="FK__Animals__group_i__22751F6C">
+          <End Role="AnimalGroups" Type="Self.AnimalGroups" Multiplicity="0..1" />
           <End Role="Animals" Type="Self.Animals" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AnimalGroup">
+            <Principal Role="AnimalGroups">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Animals">
@@ -251,7 +251,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Animals__mother___5BE2A6F2">
+        <Association Name="FK__Animals__mother___208CD6FA">
           <End Role="Animals" Type="Self.Animals" Multiplicity="0..1" />
           <End Role="Animals1" Type="Self.Animals" Multiplicity="*" />
           <ReferentialConstraint>
@@ -263,7 +263,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__employees__idpos__5070F446">
+        <Association Name="FK__employees__idpos__10566F31">
           <End Role="posts" Type="Self.posts" Multiplicity="1" />
           <End Role="employees" Type="Self.employees" Multiplicity="*" />
           <ReferentialConstraint>
@@ -275,55 +275,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EventAnim__anima__68487DD7">
-          <End Role="Animals" Type="Self.Animals" Multiplicity="1" />
-          <End Role="EventAnimal" Type="Self.EventAnimal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Animals">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="EventAnimal">
-              <PropertyRef Name="animalId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__EventAnim__event__6754599E">
-          <End Role="events" Type="Self.events" Multiplicity="1" />
-          <End Role="EventAnimal" Type="Self.EventAnimal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="events">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="EventAnimal">
-              <PropertyRef Name="eventId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__EventEmpl__emplo__6C190EBB">
+        <Association Name="FK__EventEmpl__emplo__43D61337">
           <End Role="employees" Type="Self.employees" Multiplicity="1" />
-          <End Role="EventEmployee" Type="Self.EventEmployee" Multiplicity="*" />
+          <End Role="EventEmployees" Type="Self.EventEmployees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="employees">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="EventEmployee">
+            <Dependent Role="EventEmployees">
               <PropertyRef Name="employeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EventEmpl__event__6B24EA82">
+        <Association Name="FK__EventEmpl__event__42E1EEFE">
           <End Role="events" Type="Self.events" Multiplicity="1" />
-          <End Role="EventEmployee" Type="Self.EventEmployee" Multiplicity="*" />
+          <End Role="EventEmployees" Type="Self.EventEmployees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="events">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="EventEmployee">
+            <Dependent Role="EventEmployees">
               <PropertyRef Name="eventId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__events__idType__45F365D3">
+        <Association Name="FK__events__idType__31B762FC">
           <End Role="EventTypes" Type="Self.EventTypes" Multiplicity="1" />
           <End Role="events" Type="Self.events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -335,11 +311,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__posts__idDeparta__3F466844">
-          <End Role="department" Type="Self.department" Multiplicity="1" />
+        <Association Name="FK__posts__idDeparta__0B91BA14">
+          <End Role="departments" Type="Self.departments" Multiplicity="1" />
           <End Role="posts" Type="Self.posts" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="department">
+            <Principal Role="departments">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="posts">
@@ -347,7 +323,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__products__idEven__4BAC3F29">
+        <Association Name="FK__products__idEven__37703C52">
           <End Role="events" Type="Self.events" Multiplicity="1" />
           <End Role="products" Type="Self.products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -359,7 +335,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__products__idType__49C3F6B7">
+        <Association Name="FK__products__idType__3587F3E0">
           <End Role="productTypes" Type="Self.productTypes" Multiplicity="1" />
           <End Role="products" Type="Self.products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -371,31 +347,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__productSh__idPro__628FA481">
+        <Association Name="FK__productSh__idPro__3A4CA8FD">
           <End Role="products" Type="Self.products" Multiplicity="1" />
-          <End Role="productShipment" Type="Self.productShipment" Multiplicity="*" />
+          <End Role="productShipments" Type="Self.productShipments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="products">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="productShipment">
+            <Dependent Role="productShipments">
               <PropertyRef Name="idProduct" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__productSh__idShi__6383C8BA">
-          <End Role="shipments" Type="Self.shipments" Multiplicity="1" />
-          <End Role="productShipment" Type="Self.productShipment" Multiplicity="*" />
+        <Association Name="FK__productSh__idShi__3B40CD36">
+          <End Role="events" Type="Self.events" Multiplicity="1" />
+          <End Role="productShipments" Type="Self.productShipments" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="shipments">
+            <Principal Role="events">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="productShipment">
+            <Dependent Role="productShipments">
               <PropertyRef Name="idShipment" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__rooms__typeRoom__3C69FB99">
+        <Association Name="FK__productSh__idShi__503BEA1C">
+          <End Role="shipments" Type="Self.shipments" Multiplicity="1" />
+          <End Role="productShipments" Type="Self.productShipments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shipments">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productShipments">
+              <PropertyRef Name="idShipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__rooms__typeRoom__151B244E">
           <End Role="roomTypes" Type="Self.roomTypes" Multiplicity="1" />
           <End Role="rooms" Type="Self.rooms" Multiplicity="*" />
           <ReferentialConstraint>
@@ -407,7 +395,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__shipments__idCou__4222D4EF">
+        <Association Name="FK__shipments__idCou__282DF8C2">
           <End Role="counterparties" Type="Self.counterparties" Multiplicity="1" />
           <End Role="shipments" Type="Self.shipments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -419,107 +407,132 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="addNewRoomType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="name" Type="nvarchar" Mode="In" />
-        </Function>
-        <EntityContainer Name="Хранилище fermModelContainer">
-          <EntitySet Name="AnimalGroup" EntityType="Self.AnimalGroup" Schema="dbo" store:Type="Tables" />
+        <Association Name="FK_EventAnimal_Animals">
+          <End Role="Animals" Type="Self.Animals" Multiplicity="1" />
+          <End Role="EventAnimal" Type="Self.EventAnimal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animals">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EventAnimal">
+              <PropertyRef Name="Animals_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventAnimal_events">
+          <End Role="events" Type="Self.events" Multiplicity="1" />
+          <End Role="EventAnimal" Type="Self.EventAnimal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EventAnimal">
+              <PropertyRef Name="events_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fermModelStoreContainer">
+          <EntitySet Name="AnimalGroups" EntityType="Self.AnimalGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Animals" EntityType="Self.Animals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="breeds" EntityType="Self.breeds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="counterparties" EntityType="Self.counterparties" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventAnimal" EntityType="Self.EventAnimal" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EventEmployee" EntityType="Self.EventEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventEmployees" EntityType="Self.EventEmployees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="events" EntityType="Self.events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventTypes" EntityType="Self.EventTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="groupTypes" EntityType="Self.groupTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="productShipment" EntityType="Self.productShipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productShipments" EntityType="Self.productShipments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="productTypes" EntityType="Self.productTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rooms" EntityType="Self.rooms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roomTypes" EntityType="Self.roomTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="shipments" EntityType="Self.shipments" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__AnimalGro__idEmp__5535A963" Association="Self.FK__AnimalGro__idEmp__5535A963">
+          <AssociationSet Name="FK__AnimalGro__idEmp__19DFD96B" Association="Self.FK__AnimalGro__idEmp__19DFD96B">
             <End Role="employees" EntitySet="employees" />
-            <End Role="AnimalGroup" EntitySet="AnimalGroup" />
+            <End Role="AnimalGroups" EntitySet="AnimalGroups" />
           </AssociationSet>
-          <AssociationSet Name="FK__AnimalGro__idRoo__5441852A" Association="Self.FK__AnimalGro__idRoo__5441852A">
+          <AssociationSet Name="FK__AnimalGro__idRoo__18EBB532" Association="Self.FK__AnimalGro__idRoo__18EBB532">
             <End Role="rooms" EntitySet="rooms" />
-            <End Role="AnimalGroup" EntitySet="AnimalGroup" />
+            <End Role="AnimalGroups" EntitySet="AnimalGroups" />
           </AssociationSet>
-          <AssociationSet Name="FK__AnimalGro__idTyp__534D60F1" Association="Self.FK__AnimalGro__idTyp__534D60F1">
+          <AssociationSet Name="FK__AnimalGro__idTyp__17F790F9" Association="Self.FK__AnimalGro__idTyp__17F790F9">
             <End Role="groupTypes" EntitySet="groupTypes" />
-            <End Role="AnimalGroup" EntitySet="AnimalGroup" />
+            <End Role="AnimalGroups" EntitySet="AnimalGroups" />
           </AssociationSet>
-          <AssociationSet Name="FK__Animals__breed__5AEE82B9" Association="Self.FK__Animals__breed__5AEE82B9">
+          <AssociationSet Name="FK__Animals__breed__1F98B2C1" Association="Self.FK__Animals__breed__1F98B2C1">
             <End Role="breeds" EntitySet="breeds" />
             <End Role="Animals" EntitySet="Animals" />
           </AssociationSet>
-          <AssociationSet Name="FK__Animals__father___5CD6CB2B" Association="Self.FK__Animals__father___5CD6CB2B">
+          <AssociationSet Name="FK__Animals__father___2180FB33" Association="Self.FK__Animals__father___2180FB33">
             <End Role="Animals" EntitySet="Animals" />
             <End Role="Animals1" EntitySet="Animals" />
           </AssociationSet>
-          <AssociationSet Name="FK__Animals__group_i__5DCAEF64" Association="Self.FK__Animals__group_i__5DCAEF64">
-            <End Role="AnimalGroup" EntitySet="AnimalGroup" />
+          <AssociationSet Name="FK__Animals__group_i__22751F6C" Association="Self.FK__Animals__group_i__22751F6C">
+            <End Role="AnimalGroups" EntitySet="AnimalGroups" />
             <End Role="Animals" EntitySet="Animals" />
           </AssociationSet>
-          <AssociationSet Name="FK__Animals__mother___5BE2A6F2" Association="Self.FK__Animals__mother___5BE2A6F2">
+          <AssociationSet Name="FK__Animals__mother___208CD6FA" Association="Self.FK__Animals__mother___208CD6FA">
             <End Role="Animals" EntitySet="Animals" />
             <End Role="Animals1" EntitySet="Animals" />
           </AssociationSet>
-          <AssociationSet Name="FK__employees__idpos__5070F446" Association="Self.FK__employees__idpos__5070F446">
+          <AssociationSet Name="FK__employees__idpos__10566F31" Association="Self.FK__employees__idpos__10566F31">
             <End Role="posts" EntitySet="posts" />
             <End Role="employees" EntitySet="employees" />
           </AssociationSet>
-          <AssociationSet Name="FK__EventAnim__anima__68487DD7" Association="Self.FK__EventAnim__anima__68487DD7">
-            <End Role="Animals" EntitySet="Animals" />
-            <End Role="EventAnimal" EntitySet="EventAnimal" />
-          </AssociationSet>
-          <AssociationSet Name="FK__EventAnim__event__6754599E" Association="Self.FK__EventAnim__event__6754599E">
-            <End Role="events" EntitySet="events" />
-            <End Role="EventAnimal" EntitySet="EventAnimal" />
-          </AssociationSet>
-          <AssociationSet Name="FK__EventEmpl__emplo__6C190EBB" Association="Self.FK__EventEmpl__emplo__6C190EBB">
+          <AssociationSet Name="FK__EventEmpl__emplo__43D61337" Association="Self.FK__EventEmpl__emplo__43D61337">
             <End Role="employees" EntitySet="employees" />
-            <End Role="EventEmployee" EntitySet="EventEmployee" />
+            <End Role="EventEmployees" EntitySet="EventEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__EventEmpl__event__6B24EA82" Association="Self.FK__EventEmpl__event__6B24EA82">
+          <AssociationSet Name="FK__EventEmpl__event__42E1EEFE" Association="Self.FK__EventEmpl__event__42E1EEFE">
             <End Role="events" EntitySet="events" />
-            <End Role="EventEmployee" EntitySet="EventEmployee" />
+            <End Role="EventEmployees" EntitySet="EventEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__events__idType__45F365D3" Association="Self.FK__events__idType__45F365D3">
+          <AssociationSet Name="FK__events__idType__31B762FC" Association="Self.FK__events__idType__31B762FC">
             <End Role="EventTypes" EntitySet="EventTypes" />
             <End Role="events" EntitySet="events" />
           </AssociationSet>
-          <AssociationSet Name="FK__posts__idDeparta__3F466844" Association="Self.FK__posts__idDeparta__3F466844">
-            <End Role="department" EntitySet="department" />
+          <AssociationSet Name="FK__posts__idDeparta__0B91BA14" Association="Self.FK__posts__idDeparta__0B91BA14">
+            <End Role="departments" EntitySet="departments" />
             <End Role="posts" EntitySet="posts" />
           </AssociationSet>
-          <AssociationSet Name="FK__products__idEven__4BAC3F29" Association="Self.FK__products__idEven__4BAC3F29">
+          <AssociationSet Name="FK__products__idEven__37703C52" Association="Self.FK__products__idEven__37703C52">
             <End Role="events" EntitySet="events" />
             <End Role="products" EntitySet="products" />
           </AssociationSet>
-          <AssociationSet Name="FK__products__idType__49C3F6B7" Association="Self.FK__products__idType__49C3F6B7">
+          <AssociationSet Name="FK__products__idType__3587F3E0" Association="Self.FK__products__idType__3587F3E0">
             <End Role="productTypes" EntitySet="productTypes" />
             <End Role="products" EntitySet="products" />
           </AssociationSet>
-          <AssociationSet Name="FK__productSh__idPro__628FA481" Association="Self.FK__productSh__idPro__628FA481">
+          <AssociationSet Name="FK__productSh__idPro__3A4CA8FD" Association="Self.FK__productSh__idPro__3A4CA8FD">
             <End Role="products" EntitySet="products" />
-            <End Role="productShipment" EntitySet="productShipment" />
+            <End Role="productShipments" EntitySet="productShipments" />
           </AssociationSet>
-          <AssociationSet Name="FK__productSh__idShi__6383C8BA" Association="Self.FK__productSh__idShi__6383C8BA">
+          <AssociationSet Name="FK__productSh__idShi__3B40CD36" Association="Self.FK__productSh__idShi__3B40CD36">
+            <End Role="events" EntitySet="events" />
+            <End Role="productShipments" EntitySet="productShipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__productSh__idShi__503BEA1C" Association="Self.FK__productSh__idShi__503BEA1C">
             <End Role="shipments" EntitySet="shipments" />
-            <End Role="productShipment" EntitySet="productShipment" />
+            <End Role="productShipments" EntitySet="productShipments" />
           </AssociationSet>
-          <AssociationSet Name="FK__rooms__typeRoom__3C69FB99" Association="Self.FK__rooms__typeRoom__3C69FB99">
+          <AssociationSet Name="FK__rooms__typeRoom__151B244E" Association="Self.FK__rooms__typeRoom__151B244E">
             <End Role="roomTypes" EntitySet="roomTypes" />
             <End Role="rooms" EntitySet="rooms" />
           </AssociationSet>
-          <AssociationSet Name="FK__shipments__idCou__4222D4EF" Association="Self.FK__shipments__idCou__4222D4EF">
+          <AssociationSet Name="FK__shipments__idCou__282DF8C2" Association="Self.FK__shipments__idCou__282DF8C2">
             <End Role="counterparties" EntitySet="counterparties" />
             <End Role="shipments" EntitySet="shipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventAnimal_Animals" Association="Self.FK_EventAnimal_Animals">
+            <End Role="Animals" EntitySet="Animals" />
+            <End Role="EventAnimal" EntitySet="EventAnimal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventAnimal_events" Association="Self.FK_EventAnimal_events">
+            <End Role="events" EntitySet="events" />
+            <End Role="EventAnimal" EntitySet="EventAnimal" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -547,9 +560,9 @@
           <Property Name="ear_tag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="birth_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="birth_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="breed" Type="Int32" />
-          <Property Name="arrival_date" Type="DateTime" Precision="0" />
+          <Property Name="arrival_date" Type="DateTime" Precision="3" />
           <Property Name="origin" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="mother_id" Type="Int32" />
           <Property Name="father_id" Type="Int32" />
@@ -600,7 +613,7 @@
           <Property Name="midleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="lastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="pasport" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="snils" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="inn" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
@@ -1070,201 +1083,199 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище fermModelContainer" CdmEntityContainer="fermEntities">
-          <EntitySetMapping Name="AnimalGroups">
-            <EntityTypeMapping TypeName="fermModel.AnimalGroup">
-              <MappingFragment StoreEntitySet="AnimalGroup">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idType" ColumnName="idType" />
-                <ScalarProperty Name="idRoom" ColumnName="idRoom" />
-                <ScalarProperty Name="idEmployee" ColumnName="idEmployee" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Animals">
-            <EntityTypeMapping TypeName="fermModel.Animal">
-              <MappingFragment StoreEntitySet="Animals">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="ear_tag" ColumnName="ear_tag" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
-                <ScalarProperty Name="breed" ColumnName="breed" />
-                <ScalarProperty Name="arrival_date" ColumnName="arrival_date" />
-                <ScalarProperty Name="origin" ColumnName="origin" />
-                <ScalarProperty Name="mother_id" ColumnName="mother_id" />
-                <ScalarProperty Name="father_id" ColumnName="father_id" />
-                <ScalarProperty Name="group_id" ColumnName="group_id" />
-                <ScalarProperty Name="status" ColumnName="status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="breeds">
-            <EntityTypeMapping TypeName="fermModel.breed">
-              <MappingFragment StoreEntitySet="breeds">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nameBreed" ColumnName="nameBreed" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="counterparties">
-            <EntityTypeMapping TypeName="fermModel.counterparty">
-              <MappingFragment StoreEntitySet="counterparties">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nameCounterparties" ColumnName="nameCounterparties" />
-                <ScalarProperty Name="adres" ColumnName="adres" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="isRegular" ColumnName="isRegular" />
-                <ScalarProperty Name="category" ColumnName="category" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="departments">
-            <EntityTypeMapping TypeName="fermModel.department">
-              <MappingFragment StoreEntitySet="department">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nameDepartment" ColumnName="nameDepartment" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="employees">
-            <EntityTypeMapping TypeName="fermModel.employee">
-              <MappingFragment StoreEntitySet="employees">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="midleName" ColumnName="midleName" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="birthday" ColumnName="birthday" />
-                <ScalarProperty Name="pasport" ColumnName="pasport" />
-                <ScalarProperty Name="snils" ColumnName="snils" />
-                <ScalarProperty Name="inn" ColumnName="inn" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="idpost" ColumnName="idpost" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EventEmployees">
-            <EntityTypeMapping TypeName="fermModel.EventEmployee">
-              <MappingFragment StoreEntitySet="EventEmployee">
-                <ScalarProperty Name="eventId" ColumnName="eventId" />
-                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
-                <ScalarProperty Name="description" ColumnName="description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="events">
-            <EntityTypeMapping TypeName="fermModel.event">
-              <MappingFragment StoreEntitySet="events">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
-                <ScalarProperty Name="idType" ColumnName="idType" />
-                <ScalarProperty Name="descriiption" ColumnName="descriiption" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EventTypes">
-            <EntityTypeMapping TypeName="fermModel.EventType">
-              <MappingFragment StoreEntitySet="EventTypes">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nameEvent" ColumnName="nameEvent" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="groupTypes">
-            <EntityTypeMapping TypeName="fermModel.groupType">
-              <MappingFragment StoreEntitySet="groupTypes">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nameGroup" ColumnName="nameGroup" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="posts">
-            <EntityTypeMapping TypeName="fermModel.post">
-              <MappingFragment StoreEntitySet="posts">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="namePost" ColumnName="namePost" />
-                <ScalarProperty Name="salary" ColumnName="salary" />
-                <ScalarProperty Name="idDepartament" ColumnName="idDepartament" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="fermModel.product">
-              <MappingFragment StoreEntitySet="products">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="descriiption" ColumnName="descriiption" />
-                <ScalarProperty Name="idType" ColumnName="idType" />
-                <ScalarProperty Name="prodauctionDate" ColumnName="prodauctionDate" />
-                <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
-                <ScalarProperty Name="idEvent" ColumnName="idEvent" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="productShipments">
-            <EntityTypeMapping TypeName="fermModel.productShipment">
-              <MappingFragment StoreEntitySet="productShipment">
-                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
-                <ScalarProperty Name="idShipment" ColumnName="idShipment" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="productTypes">
-            <EntityTypeMapping TypeName="fermModel.productType">
-              <MappingFragment StoreEntitySet="productTypes">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nameTypeProduct" ColumnName="nameTypeProduct" />
-                <ScalarProperty Name="unit" ColumnName="unit" />
-                <ScalarProperty Name="cost" ColumnName="cost" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="rooms">
-            <EntityTypeMapping TypeName="fermModel.room">
-              <MappingFragment StoreEntitySet="rooms">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="adres" ColumnName="adres" />
-                <ScalarProperty Name="capacity" ColumnName="capacity" />
-                <ScalarProperty Name="currentCount" ColumnName="currentCount" />
-                <ScalarProperty Name="locationNotes" ColumnName="locationNotes" />
-                <ScalarProperty Name="typeRoom" ColumnName="typeRoom" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="roomTypes">
-            <EntityTypeMapping TypeName="fermModel.roomType">
-              <MappingFragment StoreEntitySet="roomTypes">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nameRoomTtpes" ColumnName="nameRoomTtpes" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="shipments">
-            <EntityTypeMapping TypeName="fermModel.shipment">
-              <MappingFragment StoreEntitySet="shipments">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idCounterapies" ColumnName="idCounterapies" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="sum" ColumnName="sum" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="EventAnimal" TypeName="fermModel.EventAnimal" StoreEntitySet="EventAnimal">
-            <EndProperty Name="Animals">
-              <ScalarProperty Name="id" ColumnName="animalId" />
-            </EndProperty>
-            <EndProperty Name="events">
-              <ScalarProperty Name="id" ColumnName="eventId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="addNewRoomType" FunctionName="Хранилище fermModel.addNewRoomType" />
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="fermModelStoreContainer" CdmEntityContainer="fermEntities">
+    <EntitySetMapping Name="AnimalGroups">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.AnimalGroup)">
+        <MappingFragment StoreEntitySet="AnimalGroups">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idType" ColumnName="idType" />
+          <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+          <ScalarProperty Name="idEmployee" ColumnName="idEmployee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Animals">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.Animal)">
+        <MappingFragment StoreEntitySet="Animals">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ear_tag" ColumnName="ear_tag" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="breed" ColumnName="breed" />
+          <ScalarProperty Name="arrival_date" ColumnName="arrival_date" />
+          <ScalarProperty Name="origin" ColumnName="origin" />
+          <ScalarProperty Name="mother_id" ColumnName="mother_id" />
+          <ScalarProperty Name="father_id" ColumnName="father_id" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="breeds">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.breed)">
+        <MappingFragment StoreEntitySet="breeds">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nameBreed" ColumnName="nameBreed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="counterparties">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.counterparty)">
+        <MappingFragment StoreEntitySet="counterparties">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nameCounterparties" ColumnName="nameCounterparties" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="isRegular" ColumnName="isRegular" />
+          <ScalarProperty Name="category" ColumnName="category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="departments">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.department)">
+        <MappingFragment StoreEntitySet="departments">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nameDepartment" ColumnName="nameDepartment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.employee)">
+        <MappingFragment StoreEntitySet="employees">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="midleName" ColumnName="midleName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="pasport" ColumnName="pasport" />
+          <ScalarProperty Name="snils" ColumnName="snils" />
+          <ScalarProperty Name="inn" ColumnName="inn" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="idpost" ColumnName="idpost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventEmployees">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.EventEmployee)">
+        <MappingFragment StoreEntitySet="EventEmployees">
+          <ScalarProperty Name="eventId" ColumnName="eventId" />
+          <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="events">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.event)">
+        <MappingFragment StoreEntitySet="events">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+          <ScalarProperty Name="idType" ColumnName="idType" />
+          <ScalarProperty Name="descriiption" ColumnName="descriiption" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.EventType)">
+        <MappingFragment StoreEntitySet="EventTypes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nameEvent" ColumnName="nameEvent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="groupTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.groupType)">
+        <MappingFragment StoreEntitySet="groupTypes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nameGroup" ColumnName="nameGroup" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="posts">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.post)">
+        <MappingFragment StoreEntitySet="posts">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="namePost" ColumnName="namePost" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="idDepartament" ColumnName="idDepartament" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.product)">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="descriiption" ColumnName="descriiption" />
+          <ScalarProperty Name="idType" ColumnName="idType" />
+          <ScalarProperty Name="prodauctionDate" ColumnName="prodauctionDate" />
+          <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
+          <ScalarProperty Name="idEvent" ColumnName="idEvent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productShipments">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.productShipment)">
+        <MappingFragment StoreEntitySet="productShipments">
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="idShipment" ColumnName="idShipment" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.productType)">
+        <MappingFragment StoreEntitySet="productTypes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nameTypeProduct" ColumnName="nameTypeProduct" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rooms">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.room)">
+        <MappingFragment StoreEntitySet="rooms">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="currentCount" ColumnName="currentCount" />
+          <ScalarProperty Name="locationNotes" ColumnName="locationNotes" />
+          <ScalarProperty Name="typeRoom" ColumnName="typeRoom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roomTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.roomType)">
+        <MappingFragment StoreEntitySet="roomTypes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nameRoomTtpes" ColumnName="nameRoomTtpes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="shipments">
+      <EntityTypeMapping TypeName="IsTypeOf(fermModel.shipment)">
+        <MappingFragment StoreEntitySet="shipments">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idCounterapies" ColumnName="idCounterapies" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="sum" ColumnName="sum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="EventAnimal" TypeName="fermModel.EventAnimal" StoreEntitySet="EventAnimal">
+      <EndProperty Name="Animals">
+        <ScalarProperty Name="id" ColumnName="Animals_id" />
+      </EndProperty>
+      <EndProperty Name="events">
+        <ScalarProperty Name="id" ColumnName="events_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -1278,7 +1289,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>
