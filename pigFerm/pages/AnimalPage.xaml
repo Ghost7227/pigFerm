@@ -49,7 +49,7 @@
 
                                     <TextBlock Grid.Column="3" Text="{Binding breed1.nameBreed}"/>
                                     <TextBlock Grid.Column="4" Text="{Binding origin}"/>
-                                    <TextBlock Grid.Column="5" Text="{Binding AnimalGroup.id}"/>
+                                    <TextBlock Grid.Column="5" Text="{Binding AnimalGroup.groupType.nameGroup}"/>
                                     <TextBlock Grid.Column="6" Text="{Binding status}"/>
                                 </Grid>
                             </DataTemplate>

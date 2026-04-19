@@ -18,8 +18,19 @@
                     </Grid.RowDefinitions>
 
                     <Button Name="addNewEventBtn" Content="Добавить событие" Click="addNewEventBtn_Click"/>
-                    
+
                     <ListView Name="eventLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Изменить" Name="editItemMenu" Click="editItemMenu_Click"/>
+                                <MenuItem Header="Удалить" Name="deleteItemMenu" Click="deleteItemMenu_Click"/>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>

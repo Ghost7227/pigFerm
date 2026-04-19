@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using pigFerm.database;
+using pigFerm.viewWindows;
 using pigFerm.windows;
 
 namespace pigFerm.pages
@@ -30,6 +32,7 @@ namespace pigFerm.pages
         void LoadData()
         {
             eventTypeLV.ItemsSource = App.db.EventTypes.ToList();
+            eventLV.Items.Clear();
             eventLV.ItemsSource = App.db.events.ToList();
         }
 
@@ -47,6 +50,23 @@ namespace pigFerm.pages
             AddOrEditEventWindow add = new AddOrEditEventWindow(target);
             add.ShowDialog();
             LoadData();
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            @event ev = eventLV.SelectedItem as @event; 
+            EventViewWindow eventViewWindow = new EventViewWindow(ev);
+            eventViewWindow.ShowDialog();
+        }
+
+        private void editItemMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void deleteItemMenu_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

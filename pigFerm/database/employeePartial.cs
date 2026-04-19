@@ -18,5 +18,7 @@ namespace pigFerm.database
                 return str;
             }
         }
+
+        public string descriptionEventEmployee{ get; set; }
     }
 }

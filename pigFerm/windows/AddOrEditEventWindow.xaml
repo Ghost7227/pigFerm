@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:pigFerm.windows"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="AddOrEditEventWindow" Height="450" Width="800">
+        Title="AddOrEditEventWindow" Height="450" MinWidth="600">
     <Grid>
         <Grid Name="addGrid">
             <Grid.ColumnDefinitions>
@@ -14,13 +14,17 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+
+                <RowDefinition />
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
+            <TextBlock Text="Заполните данные: "/>
+            
             <TextBlock Text="Выберите тип события: " Grid.Row="1"/>
             <ComboBox Name="eventtypeCB" Grid.Row="1" Grid.Column="1" DisplayMemberPath="nameEvent"/>
 
@@ -28,10 +32,165 @@
             <xctk:DateTimePicker Name="dateTimePicker" Format="Custom"
                 FormatString="dd.MM.yyyy HH:mm" Grid.Row="2" Grid.Column="1"/>
 
-            <TextBlock Text="Введите описание:" Grid.Row="3"/>
-            <TextBox Name="descriptionTB" Grid.Row="3" Grid.Column="1"/>
+            <Grid Grid.ColumnSpan="2" Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-            <Button Name="saveBtn" Content="Сохранить" Click="saveBtn_Click" Grid.Row="4" Grid.Column="1"/>
+                <TextBlock Text="Выберите сотрудников: "/>
+                <ListView Name="employeeLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                    <Setter Property="IsSelected" Value="True"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="col"/>
+                                    <ColumnDefinition SharedSizeGroup="col1"/>
+                                    <ColumnDefinition SharedSizeGroup="col2"/>
+                                    <ColumnDefinition SharedSizeGroup="col3"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding id}"/>
+                                <TextBlock Text="{Binding post.namePost}" Grid.Column="1"/>
+                                <TextBlock Text="{Binding fio}" Grid.Column="2"/>
+                                <StackPanel Grid.Column="3">
+                                    <TextBlock Text="Заметки: "/>
+                                    <TextBox Name="descriptionTB" TextChanged="descriptionTB_TextChanged"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+                <TextBlock Text="Выбранные сотрудники: " Grid.Row="2"/>
+                <ListView Name="selectedEmployeeLV" Grid.Row="3" Grid.IsSharedSizeScope="True">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <EventSetter Event="MouseDoubleClick" Handler="selectedEmployeeListViewItem_MouseDoubleClick"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="col"/>
+                                    <ColumnDefinition SharedSizeGroup="col1"/>
+                                    <ColumnDefinition SharedSizeGroup="col2"/>
+                                    <ColumnDefinition SharedSizeGroup="col3"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding id}"/>
+                                <TextBlock Text="{Binding post.namePost}" Grid.Column="1"/>
+                                <TextBlock Text="{Binding fio}" Grid.Column="2"/>
+                                <TextBlock Text="{Binding descriptionEventEmployee}" Grid.Column="3"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+                <!--Животные-->
+                <TextBlock Text="Выберите животных: " Grid.Column="1"/>
+                <ListView Name="animalsLV" Grid.Row="1" Grid.Column="1" Grid.IsSharedSizeScope="True">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <EventSetter Event="MouseDoubleClick" Handler="animalsLVItem_MouseDoubleClick"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                    <Setter Property="IsSelected" Value="True"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="col"/>
+                                    <ColumnDefinition SharedSizeGroup="col1"/>
+                                    <ColumnDefinition SharedSizeGroup="col2"/>
+                                    <ColumnDefinition SharedSizeGroup="col3"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding id}"/>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Порода: "/>
+                                    <TextBlock Text="{Binding breed1.nameBreed}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Бирка: "/>
+                                    <TextBlock Text="{Binding ear_tag}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="3">
+                                    <TextBlock Text="Группа: "/>
+                                    <TextBlock Text="{Binding AnimalGroup.view}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <TextBlock Text="Выбранные животные: " Grid.Column="1" Grid.Row="2"/>
+                <ListView Name="selectedAnimalsLV" Grid.Row="3" Grid.Column="1" Grid.IsSharedSizeScope="True">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <EventSetter Event="MouseDoubleClick" Handler="selectedAnimalsLVItem_MouseDoubleClick"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                    <Setter Property="IsSelected" Value="True"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="col"/>
+                                    <ColumnDefinition SharedSizeGroup="col1"/>
+                                    <ColumnDefinition SharedSizeGroup="col2"/>
+                                    <ColumnDefinition SharedSizeGroup="col3"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding id}"/>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Порода: "/>
+                                    <TextBlock Text="{Binding breed1.nameBreed}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Бирка: "/>
+                                    <TextBlock Text="{Binding ear_tag}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="3">
+                                    <TextBlock Text="Группа: "/>
+                                    <TextBlock Text="{Binding AnimalGroup.view}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <TextBlock Text="Описание:" Grid.Row="4"/>
+            <TextBox Name="descriptionTB" Grid.Row="4" Grid.Column="1"/>
+
+            <Button Name="saveBtn" Content="Сохранить" Click="saveBtn_Click" Grid.Row="5" Grid.Column="1"/>
+            <Button Name="editBtn" Content="Сохранить изменения" Click="editBtn_Click" Grid.Row="5" Grid.Column="1"/>
 
         </Grid>
     </Grid>

@@ -22,18 +22,65 @@ namespace pigFerm.windows
     /// </summary>
     public partial class AddOrEditEventWindow : Window
     {
+        List<employee> employeesInDb = new List<employee>();
+        List<employee> selectedEmployee = new List<employee>();
+
+        List<Animal> animalsInDb = new List<Animal>();
+        List<Animal> selectedAnimals = new List<Animal>();
         public AddOrEditEventWindow()
         {
             InitializeComponent();
         }
 
+        void LoadEmployees()
+        {
+            employeeLV.ItemsSource = null;
+            employeeLV.ItemsSource  = employeesInDb;
+            selectedEmployeeLV.ItemsSource = null;
+            selectedEmployeeLV.ItemsSource = selectedEmployee;
+        }
+
+        void LoadAnimals()
+        {
+            animalsLV.ItemsSource = null;
+            animalsLV.ItemsSource = animalsInDb;
+            selectedAnimalsLV.ItemsSource = null;
+            selectedAnimalsLV.ItemsSource = selectedAnimals;
+        }
+
+        void LoadData()
+        {
+            eventtypeCB.ItemsSource = App.db.EventTypes.ToList();
+            employeesInDb = App.db.employees.ToList();
+            animalsInDb = App.db.Animals.Where(a => a.status == "Активный").ToList();
+        }
+
         public AddOrEditEventWindow(string target)
         {
             InitializeComponent();
-            if(target == "add") 
+            LoadData();
+            LoadEmployees();
+            LoadAnimals();
+        }
+
+        public AddOrEditEventWindow(@event ev)
+        {
+            InitializeComponent();
+            LoadData();
+            if (ev  != null)
             {
-                eventtypeCB.ItemsSource = App.db.EventTypes.ToList();
+                eventtypeCB.SelectedItem = ev.EventType;
+                dateTimePicker.Value = ev.dateTime;
+                selectedAnimals = ev.Animals.ToList();
+
+                foreach (var evEm in ev.EventEmployees)
+                {
+                    selectedEmployee.Add(evEm.employee);
+                }
+                descriptionTB.Text = ev.descriiption;
             }
+            LoadEmployees();
+            LoadAnimals();
         }
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
@@ -53,7 +100,7 @@ namespace pigFerm.windows
             }
             else MessageBox.Show("Укажите время события!");
 
-            if (eventType != null && dateTime <= DateTime.Now)
+            if (eventType != null && dateTime <= DateTime.Now && selectedEmployee.Count > 0)
             {
                 database.@event eve = new @event();
                 eve.EventType = eventType;
@@ -63,10 +110,30 @@ namespace pigFerm.windows
                     eve.descriiption = descriptionTB.Text;
                 }
 
+                if (selectedAnimals.Count > 0)
+                {
+                    foreach (var item in selectedAnimals)
+                    {
+                        eve.Animals.Add(item);
+                    }
+                }
+
                 try
                 {
                     App.db.events.Add(eve);
                     App.db.SaveChanges();
+
+                    foreach (var item in selectedEmployee)
+                    {
+                        EventEmployee eventEmployee = new EventEmployee();
+                        eventEmployee.@event = eve;
+                        eventEmployee.employee = item;
+                        eventEmployee.description = item.descriptionEventEmployee;
+
+                        App.db.EventEmployees.Add(eventEmployee);
+                        App.db.SaveChanges();
+                    }
+
                     MessageBox.Show($"Событие {eve.EventType.nameEvent} {eve.dateTime} успешно сохранено");
                     Close();
                 }
@@ -76,6 +143,67 @@ namespace pigFerm.windows
                 }
             }
             else MessageBox.Show("Исправьте ошибки!");
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            employee employee = employeeLV.SelectedItem as employee;
+            if (employee != null)
+            {
+                selectedEmployee.Add(employee);
+                employeesInDb.Remove(employee);
+                LoadEmployees();
+            }
+        }
+        private void selectedEmployeeListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            employee employee = selectedEmployeeLV.SelectedItem as employee;
+            if (employee != null)
+            {
+                employee.descriptionEventEmployee = "";
+                employeesInDb.Add(employee);
+                selectedEmployee.Remove(employee);
+                LoadEmployees();
+            }
+        }
+
+        private void descriptionTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string text = textBox.Text;
+
+            employee employee = employeeLV.SelectedItem as employee;
+            if(employee != null)
+            {
+                employee.descriptionEventEmployee = text.Trim();
+            }
+        }
+
+        private void animalsLVItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Animal animal = animalsLV.SelectedItem as Animal;
+            if(animal != null)
+            {
+                selectedAnimals.Add(animal);
+                animalsInDb.Remove(animal);
+                LoadAnimals();
+            }
+        }
+
+        private void selectedAnimalsLVItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Animal animal = animalsLV.SelectedItem as Animal;
+            if (animal != null)
+            {
+                animalsInDb.Add(animal);
+                selectedAnimals.Remove(animal);
+                LoadAnimals();
+            }
+        }
+
+        private void editBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

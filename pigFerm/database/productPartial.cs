@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace pigFerm.database
 {
-   public partial class product
+    public partial class product
     {
         public string quantityUnit
         {
@@ -34,5 +34,7 @@ namespace pigFerm.database
                 return str;
             }
         }
+
+        public int queryQuantity { get; set; }
     }
 }

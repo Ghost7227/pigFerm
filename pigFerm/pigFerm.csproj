@@ -89,6 +89,7 @@
     <Compile Include="database\AnimalGroup.cs">
       <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="database\animalGroupPartial.cs" />
     <Compile Include="database\breed.cs">
       <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
@@ -152,6 +153,7 @@
     <Compile Include="database\shipment.cs">
       <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="database\shipmentPartial.cs" />
     <Compile Include="pages\AnimalPage.xaml.cs">
       <DependentUpon>AnimalPage.xaml</DependentUpon>
     </Compile>
@@ -176,6 +178,9 @@
     <Compile Include="database\roomPartial.cs" />
     <Compile Include="pages\ShipmentPage.xaml.cs">
       <DependentUpon>ShipmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="viewWindows\EventViewWindow.xaml.cs">
+      <DependentUpon>EventViewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\AddNewBreedWindow.xaml.cs">
       <DependentUpon>AddNewBreedWindow.xaml</DependentUpon>
@@ -260,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\ShipmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="viewWindows\EventViewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
