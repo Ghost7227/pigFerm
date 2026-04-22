@@ -1,0 +1,103 @@
+﻿<Window x:Class="pigFerm.viewWindows.EventViewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pigFerm.viewWindows"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="EventViewWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="titleTB" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+
+        <TextBlock Text="Тип события: " Grid.Row="1"/>
+        <TextBlock Name="eventtypeTB" Grid.Row="1" Grid.Column="1"/>
+
+        <TextBlock Text="Дата и время:" Grid.Row="2"/>
+        <TextBlock Name="datetimeTB" Grid.Row="2" Grid.Column="1"/>
+
+        <Grid Grid.ColumnSpan="2" Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Выбранные сотрудники: " Grid.Row="0"/>
+            <ListView Name="selectedEmployeeLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="col"/>
+                                <ColumnDefinition SharedSizeGroup="col1"/>
+                                <ColumnDefinition SharedSizeGroup="col2"/>
+                                <ColumnDefinition SharedSizeGroup="col3"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding id}"/>
+                            <TextBlock Text="{Binding post.namePost}" Grid.Column="1"/>
+                            <TextBlock Text="{Binding fio}" Grid.Column="2"/>
+                            <TextBlock Text="{Binding descriptionEventEmployee}" Grid.Column="3"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--Животные-->
+
+            <TextBlock Text="Выбранные животные: " Grid.Column="1" Grid.Row="0"/>
+            <ListView Name="selectedAnimalsLV" Grid.Row="1" Grid.Column="1" Grid.IsSharedSizeScope="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="col"/>
+                                <ColumnDefinition SharedSizeGroup="col1"/>
+                                <ColumnDefinition SharedSizeGroup="col2"/>
+                                <ColumnDefinition SharedSizeGroup="col3"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding id}"/>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="Порода: "/>
+                                <TextBlock Text="{Binding breed1.nameBreed}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="Бирка: "/>
+                                <TextBlock Text="{Binding ear_tag}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3">
+                                <TextBlock Text="Группа: "/>
+                                <TextBlock Text="{Binding AnimalGroup.view}"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <TextBlock Text="Введите описание:" Grid.Row="4"/>
+        <TextBox Name="descriptionTB" Grid.Row="4" Grid.Column="1"/>
+
+        <Button Name="closeBtn" Content="Закрыть" Click="closeBtn_Click" Grid.Row="5" Grid.Column="1"/>
+
+    </Grid>
+</Window>

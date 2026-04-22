@@ -80,6 +80,7 @@ namespace pigFerm.windows
                 newAnimal.birth_date = bd;
                 newAnimal.gender = gender;
                 newAnimal.AnimalGroup = animalGroup;
+                newAnimal.status = "Активный";
 
                 if(mother == null && father == null)
                 {
@@ -118,6 +119,8 @@ namespace pigFerm.windows
             originTBlock.Visibility = Visibility.Collapsed;
             arrivalDateDatePicker.Visibility = Visibility.Collapsed;
             arrivaTBlock.Visibility = Visibility.Collapsed;
+
+            LoadParents();
         }
 
         private void buyRB_Checked(object sender, RoutedEventArgs e)
@@ -131,8 +134,6 @@ namespace pigFerm.windows
             originTBlock.Visibility = Visibility.Visible;
             arrivalDateDatePicker.Visibility = Visibility.Visible;
             arrivaTBlock.Visibility = Visibility.Visible;
-
-            LoadParents();
         }
 
         void LoadParents()

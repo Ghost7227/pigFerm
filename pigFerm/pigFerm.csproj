@@ -180,6 +180,9 @@
     <Compile Include="pages\ShipmentPage.xaml.cs">
       <DependentUpon>ShipmentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="viewWindows\EventViewWindow.xaml.cs">
+      <DependentUpon>EventViewWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\AddNewBreedWindow.xaml.cs">
       <DependentUpon>AddNewBreedWindow.xaml</DependentUpon>
     </Compile>
@@ -263,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\ShipmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="viewWindows\EventViewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -361,11 +368,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="database\fermMode1l.edmx.sql" />
     <Content Include="database\fermModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>fermModel.edmx</DependentUpon>
       <LastGenOutput>fermModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="database\fermModel.edmx.sql" />
     <Content Include="database\fermModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>fermModel.edmx</DependentUpon>

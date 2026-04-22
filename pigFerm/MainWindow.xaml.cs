@@ -38,7 +38,7 @@ namespace pigFerm
 
         private void roomBtn_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new RoomsPage());
+            mainFrame.Navigate(new PostsPage());
         }
 
         private void counterpartyBtn_Click(object sender, RoutedEventArgs e)

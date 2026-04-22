@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:pigFerm.windows"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="AddOrEditEventWindow" Height="450" Width="800">
+        Title="AddOrEditEventWindow" Height="450" MinWidth="600">
     <Grid>
         <Grid Name="addGrid">
             <Grid.ColumnDefinitions>
@@ -24,7 +24,6 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Заполните данные: "/>
-
             <TextBlock Text="Выберите тип события: " Grid.Row="1"/>
             <ComboBox Name="eventtypeCB" Grid.Row="1" Grid.Column="1" DisplayMemberPath="nameEvent"/>
 
@@ -77,7 +76,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
                 <TextBlock Text="Выбранные сотрудники: " Grid.Row="2"/>
                 <ListView Name="selectedEmployeeLV" Grid.Row="3" Grid.IsSharedSizeScope="True">
                     <ListView.ItemContainerStyle>
@@ -103,7 +101,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
                 <!--Животные-->
                 <TextBlock Text="Выберите животных: " Grid.Column="1"/>
                 <ListView Name="animalsLV" Grid.Row="1" Grid.Column="1" Grid.IsSharedSizeScope="True">

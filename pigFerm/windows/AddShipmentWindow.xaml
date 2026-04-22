@@ -98,7 +98,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
             <TextBlock Text="Выбранная продукция:" Grid.Row="2"/>
             <ListView Name="selectedProdLV" Grid.IsSharedSizeScope="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="3">
                 <ListView.ItemContainerStyle>

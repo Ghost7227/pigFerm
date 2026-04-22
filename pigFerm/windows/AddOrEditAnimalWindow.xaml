@@ -59,7 +59,20 @@
         </StackPanel>
 
         <TextBlock Grid.Row="5" Text="Группа:" TextWrapping="Wrap"/>
-        <ComboBox Name="groupCB" DisplayMemberPath="id" Grid.Column="1" Grid.Row="5"/>
+        <ComboBox Name="groupCB" Grid.Column="1" Grid.Row="5" Grid.IsSharedSizeScope="True">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="col"/>
+                            <ColumnDefinition SharedSizeGroup="col1"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding id}"/>
+                        <TextBlock Text="{Binding groupType.nameGroup}" Grid.Column="1"/>
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <TextBlock Grid.Row="7" Text="Мать:" TextWrapping="Wrap" Name="motherTBlock"/>
         <ComboBox Name="motherCB" Grid.Column="1" Grid.Row="7">
