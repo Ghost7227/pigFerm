@@ -89,9 +89,11 @@
     <Compile Include="database\AnimalGroup.cs">
       <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="database\animalGroupPartial.cs" />
     <Compile Include="database\breed.cs">
       <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="database\counterpartiesPartial.cs" />
     <Compile Include="database\counterparty.cs">
       <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
@@ -152,6 +154,7 @@
     <Compile Include="database\shipment.cs">
       <DependentUpon>fermModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="database\shipmentPartial.cs" />
     <Compile Include="pages\AnimalPage.xaml.cs">
       <DependentUpon>AnimalPage.xaml</DependentUpon>
     </Compile>

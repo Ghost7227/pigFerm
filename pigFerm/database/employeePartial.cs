@@ -18,5 +18,15 @@ namespace pigFerm.database
                 return str;
             }
         }
+
+        public string descriptionEventEmployee{ get; set; }
+        public string emailCor
+        {
+            get 
+            {
+                if (string.IsNullOrWhiteSpace(email)) return "Не указана";
+                else return email;
+            }
+        }
     }
 }

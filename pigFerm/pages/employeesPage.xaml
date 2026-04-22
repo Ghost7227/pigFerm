@@ -13,13 +13,13 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal">
             <Button Content="Добавить сотрудника" Name="addNewEmployeeBtn" Click="addNewEmployeeBtn_Click"/>
-            
+
         </StackPanel>
 
         <ListView Name="employeeLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
@@ -41,39 +41,48 @@
 
                         <TextBlock Text="{Binding id}" VerticalAlignment="Center" Grid.RowSpan="2"/>
 
-                        <StackPanel Grid.Column="1">
-                            <TextBlock Text="{Binding firstName}"/>
-                            <TextBlock Text="{Binding midleName}"/>
-                            <TextBlock Text="{Binding lastName}"/>
+                        <TextBlock Text="{Binding fio}" Grid.Column="1"/>
+
+                        <TextBlock Text="{Binding birthday, StringFormat='dd.MM.yyyy'}" Grid.Column="1" Grid.Row="1"/>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <TextBlock Text="Пол: "/>
+                            <TextBlock Text="{Binding gender}"/>
                         </StackPanel>
 
-                        <TextBlock Text="{Binding birthday}" Grid.Column="1" Grid.Row="1"/>
-
-                        <TextBlock Text="{Binding gender}" Grid.Column="2"/>
-                        <TextBlock Text="{Binding post.namePost}"  Grid.Column="2" Grid.Row="1"/>
-
-                        <StackPanel Grid.Column="3" Orientation="Horizontal">
-                            <TextBlock Text="паспорт: "/>
-                            <TextBlock Text="{Binding pasport}"/>
+                        <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal">
+                            <TextBlock Text="Должность: "/>
+                            <TextBlock Text="{Binding post.namePost}"/>
                         </StackPanel>
-                        
-                        <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Horizontal">
-                            <TextBlock Text="ИНН: "/>
-                            <TextBlock Text="{Binding inn}"/>
-                        </StackPanel>
-                        
+
+                        <Grid Grid.Column="3" Grid.RowSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="icol"/>
+                                <ColumnDefinition SharedSizeGroup="icol1"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Паспорт: "/>
+                            <TextBlock Text="{Binding pasport}" Grid.Column="1"/>
+                            <TextBlock Text="ИНН: " Grid.Row="1"/>
+                            <TextBlock Text="{Binding inn}" Grid.Row="1" Grid.Column="1"/>
+                        </Grid>
+
                         <StackPanel Grid.Column="4" Orientation="Horizontal">
                             <TextBlock Text="СНИЛС: "/>
                             <TextBlock Text="{Binding snils}"/>
                         </StackPanel>
-                        
+
                         <StackPanel Grid.Column="5" Orientation="Horizontal">
                             <TextBlock Text="Номер телефона: "/>
                             <TextBlock Text="{Binding phone}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="5" Grid.Row="1" Orientation="Horizontal">
                             <TextBlock Text="Эл. почта: "/>
-                            <TextBlock Text="{Binding email}"/>
+                            <TextBlock Text="{Binding emailCor}"/>
                         </StackPanel>
 
                     </Grid>

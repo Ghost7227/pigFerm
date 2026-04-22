@@ -13,13 +13,48 @@
             <TabItem Header="События">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Button Name="addNewEventBtn" Content="Добавить событие" Click="addNewEventBtn_Click"/>
-                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Button Name="addNewEventBtn" Content="Добавить событие" Click="addNewEventBtn_Click" Width="150" Grid.RowSpan="2"/>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="Сортировка: "/>
+                            <RadioButton Name="standartRB" Content="В обычном порядке" Checked="RB_Checked"/>
+                            <RadioButton Name="unstandartRB" Content="В обратном порядке" Checked="RB_Checked"/>
+                            <RadioButton Name="dateRB" Content="По дате" Checked="RB_Checked"/>
+                            <RadioButton Name="undateRB" Content="По убыванию даты" Checked="RB_Checked"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                            <TextBlock Text="Поиск: "/>
+                            <TextBox Name="searchTB" TextChanged="searchTB_TextChanged" MinWidth="100" Height="15" Margin="3"/>
+                        </StackPanel>
+                    </Grid>
+
                     <ListView Name="eventLV" Grid.Row="1" Grid.IsSharedSizeScope="True">
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Изменить" Name="editItemMenu" Click="editItemMenu_Click"/>
+                                <MenuItem Header="Удалить" Name="deleteItemMenu" Click="deleteItemMenu_Click"/>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>

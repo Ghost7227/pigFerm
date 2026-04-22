@@ -35,10 +35,7 @@
                             <TextBlock Text="{Binding nameCounterparties}"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="2">
-                            <TextBlock Text="Постоянность: "/>
-                            <TextBlock Text="{Binding isRegular}"/>
-                        </StackPanel>
+                        <TextBlock Text="{Binding regular}" Grid.Column="2"/>
 
                         <StackPanel Orientation="Horizontal" Grid.Column="3">
                             <TextBlock Text="Адрес: "/>

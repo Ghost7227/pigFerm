@@ -24,7 +24,6 @@ namespace pigFerm
         public MainWindow()
         {
             InitializeComponent();
-            //lv1.ItemsSource = App.db.groupTypes.ToList();
         }
 
         private void employeeBtn_Click(object sender, RoutedEventArgs e)
